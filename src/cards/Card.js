@@ -16,7 +16,7 @@ import { RoleTypes } from "../components/Navbar";
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-//DSFKKSDKFJSDKJFKSDJFKJSDKFJSKJFK123
+
 export default function CardComponent() {
   const [allCards, setAllCard] = useState([]);
   const { user, setUser, setLoader, setUserRoleType, userRoleType, setFavCards } = useContext(GeneralContext);
