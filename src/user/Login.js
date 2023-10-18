@@ -32,7 +32,7 @@ export default function Login() {
                      .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
                      .required()
                      .messages({
-                        "string.pattern.base": "Password must meet the specified criteria",
+                        "string.pattern.base": "Password must contain at least one uppercase letter, one lowercase letter, one special character, and be between 8 and 32 characters in length.",
                         "any.required": "Password is required",
                       }),
     });
