@@ -1,0 +1,7 @@
+.container-cards{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    gap: 1.2rem;
+    margin-top: 10px;
+}

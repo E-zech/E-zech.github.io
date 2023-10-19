@@ -3,6 +3,7 @@ import './App.css';
 import Router from './Router';
 import Navbar, { RoleTypes } from './components/Navbar';
 import Loader from './components/Loader';
+import Footer from './components/Footer';
 
 export const GeneralContext = createContext();
 
@@ -45,6 +46,7 @@ function App() {
             <Navbar />
             <Router />
             {loader && <Loader />}
+            <Footer/>
         </GeneralContext.Provider>
     );
 }

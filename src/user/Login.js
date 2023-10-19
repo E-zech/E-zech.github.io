@@ -27,9 +27,12 @@ export default function Login() {
     const { setUser, setLoader, setUserRoleType } = useContext(GeneralContext);
 
     const schema = Joi.object({
-        email: Joi.string().email({ tlds: false }).required(),
+        email: Joi.string()
+        // .email({ tlds: false })
+        // .required()
+        ,
         password: Joi.string()
-                     .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
+                    //  .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
                      .required()
                      .messages({
                         "string.pattern.base": "Password must contain at least one uppercase letter, one lowercase letter, one special character, and be between 8 and 32 characters in length.",
@@ -63,7 +66,7 @@ export default function Login() {
         const data = new FormData(event.currentTarget);
         setLoader(true);
     
-        fetch(`https://api.shipap.co.il/clients/login?token=d2960d76-3431-11ee-b3e9-14dda9d4a5f0`, {
+        fetch(`https://api.shipap.co.il/clients/login?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
