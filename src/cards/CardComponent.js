@@ -45,23 +45,32 @@ export default function CardComponent({ card, setAllCard }) {
 
   const deleteCard = (id, userRoleType) => {
     setLoader(true);
-    let url;
-    if (userRoleType === RoleTypes.business) {
-      url = `https://api.shipap.co.il/business/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`
-    } else {
-      url = `https://api.shipap.co.il/admin/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`
-    };
 
-    fetch(url, {
-      credentials: 'include',
-      method: 'DELETE',
-    })
-      .then(() => { // Update the allCards state to remove the card with the given ID
-        setAllCard((allCards) =>
-          allCards.filter((card) => card.id !== id)
-        );
-        setLoader(false);
-      });
+    const isConfirmed = window.confirm("Are you sure you want to delete this card?");
+
+    if(isConfirmed){
+
+      let url;
+      if (userRoleType === RoleTypes.business) {
+        url = `https://api.shipap.co.il/business/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`
+      } else {
+        url = `https://api.shipap.co.il/admin/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`
+      };
+  
+      fetch(url, {
+        credentials: 'include',
+        method: 'DELETE',
+      })
+        .then(() => { 
+          setAllCard((allCards) =>
+            allCards.filter((card) => card.id !== id)
+          );
+          setLoader(false);
+        });
+    } else {
+      setLoader(false);
+    }
+   
   }
 
   return (
@@ -92,8 +101,6 @@ export default function CardComponent({ card, setAllCard }) {
               <b>Card Number:</b> {card.id}
             </Typography>
           </CardContent>
-
-          {/*---- the div that wrap the buttons at the bottom of the card--- */}
 
           <CardActions disableSpacing>
             <IconButton>

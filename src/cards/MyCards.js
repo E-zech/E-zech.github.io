@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-
+import Joi from 'joi';
+ 
 const inputsForCard = [
     { name: 'title', type: 'text', label: 'title', required: true },
     { name: 'description', type: 'text', label: 'description', required: true },
@@ -29,8 +30,28 @@ const inputsForCard = [
 export default function MyCards() {
     const [allMyCards, setAllMyCards] = useState([]);
     const [formData, setFormData] = useState({});
+    const [errors, setErrors] = useState({});
+    const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const { setAllCard } = useContext(GeneralContext);
+
+    const schema = Joi.object({
+      title: Joi.string().required().min(2).max(30),
+      description: Joi.string().required().min(6).max(200),
+      subtitle: Joi.string().required().min(2).max(30),
+      phone: Joi.string().required().pattern(/^\d{10}$/).message('"Phone number" must be 10 digits long'),
+      email: Joi.string().email({ tlds: false }).required(),
+      web:Joi.string().required().uri({ scheme: ['http', 'https'] }).message('"Img Url" must be a valid link (HTTP or HTTPS).') ,
+      imgUrl: Joi.string().required().uri({ scheme: ['http', 'https'] }).message('"Img Url" must be a valid link (HTTP or HTTPS).'),
+      imgAlt: Joi.string().required().min(2).max(20),
+      state: Joi.string().required().min(4).max(56),
+      country: Joi.string().required().min(2).max(56),
+      city: Joi.string().required(),
+      street: Joi.string().required(),
+      houseNumber: Joi.number().required(),
+      zip: Joi.number().required(),
+    });
+  
 
     useEffect(() => {
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -40,10 +61,14 @@ export default function MyCards() {
             .then(data => {
                 setAllMyCards(data)
             });
-    }, [])
+    }, [allMyCards])
 
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible); 
+        if (!isFormVisible) {
+          setFormData({});
+          setErrors({});
+      }
       };
 
     const handleChange = (event) => {
@@ -52,10 +77,35 @@ export default function MyCards() {
             ...formData,
             [name]: value
         });
+
+    const validate = schema.validate(formData, { abortEarly: false });
+    const tempErrors = { ...errors };
+    delete tempErrors[name];
+
+    if (validate.error) {
+      const item = validate.error.details.find(e => e.context.key == name);
+
+      if (item) {
+        tempErrors[name] = item.message;
+      }
+    }
+
+    setIsFormValid(!validate.error);
+    setErrors(tempErrors);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
+        const obj = {};
+        const elements = ev.target.elements;
+    
+        inputsForCard.forEach((s) => {
+          if (s.type === 'boolean') {
+            obj[s.name] = elements[s.name].checked;
+          } else {
+            obj[s.name] = elements[s.name].value;
+          }
+        });
 
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
@@ -81,6 +131,7 @@ export default function MyCards() {
           >
             {isFormVisible ? 'Close' : 'Add Card'}
           </Button>
+
           {isFormVisible && (
             <Container component="main" maxWidth="xs">
               <CssBaseline />
@@ -92,7 +143,7 @@ export default function MyCards() {
                 }}
               >
                 <Typography component="h1" variant="h5">
-                  Edit
+                  Add Card
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                   <Grid container spacing={2}>
@@ -108,11 +159,14 @@ export default function MyCards() {
                           type={i.type}
                           value={formData[i.name] || ''}
                           onChange={handleChange}
+                          error={Boolean(errors[i.name])}
+                          helperText={errors[i.name]}
+                          autoComplete="off" 
                         />
                       </Grid>
                     ))}
                   </Grid>
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isFormValid}>
                     Save
                   </Button>
                 </Box>

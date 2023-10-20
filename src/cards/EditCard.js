@@ -59,7 +59,7 @@ export default function EditCards() {
             >
 
                 <Typography component="h1" variant="h5">
-                    Edit
+                    Edit Card
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <Grid container spacing={2}>
