@@ -3,9 +3,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Brightness7Icon from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Typography from '@mui/material/Typography';
+import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -167,21 +167,12 @@ export default function Navbar({ mode, toggleMode }) {
                             </Link>
                         ))}
                     </Box>
-
-
-
-
-                    <Box
-                        sx={{
-                          
-                        }}
-                        >
-                      
+                    
+                    <Box sx={{}} >
                         <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
-                              <NightlightIcon/>{mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+                            {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}
                         </IconButton>
                         </Box>
-
                     {
                         user ?
                         <Box sx={{ flexGrow: 0 }}>
