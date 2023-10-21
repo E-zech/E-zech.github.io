@@ -36,7 +36,7 @@ export default function Account() {
 
         setLoader(true);
     
-        fetch(`https://api.shipap.co.il/clients/update?token=d2960d76-3431-11ee-b3e9-14dda9d4a5f0`, {
+        fetch(`https://api.shipap.co.il/clients/update?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'PUT',
             headers: {'Content-type': 'application/json'},

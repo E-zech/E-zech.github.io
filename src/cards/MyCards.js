@@ -78,7 +78,8 @@ export default function MyCards() {
             [name]: value
         });
 
-    const validate = schema.validate(formData, { abortEarly: false });
+   const validate = schema.validate({ ...formData, [name]: value }, { abortEarly: false });
+
     const tempErrors = { ...errors };
     delete tempErrors[name];
 

@@ -4,6 +4,8 @@ import Router from './Router';
 import Navbar, { RoleTypes } from './components/Navbar';
 import Loader from './components/Loader';
 import Footer from './components/Footer';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export const GeneralContext = createContext();
 
@@ -11,6 +13,18 @@ function App() {
     const [user, setUser] = useState();
     const [loader, setLoader] = useState(true);
     const [userRoleType, setUserRoleType] = useState(RoleTypes.none);
+    const [mode, setMode] = useState('light');
+
+    const lightTheme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+    const toggleMode = () => {
+        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+      };
 
     useEffect(() => {
         fetch(`https://api.shipap.co.il/clients/login`, {
@@ -42,12 +56,16 @@ function App() {
     }, []);
 
     return (
+        
+        <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
+        <CssBaseline />
         <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType }}>
-            <Navbar />
-            <Router />
-            {loader && <Loader />}
-            <Footer/>
+          <Navbar mode={mode} toggleMode={toggleMode} />
+          <Router />
+          {loader && <Loader />}
+          <Footer />
         </GeneralContext.Provider>
+      </ThemeProvider>
     );
 }
 

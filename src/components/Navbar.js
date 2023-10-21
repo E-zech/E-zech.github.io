@@ -3,6 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Brightness7Icon from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,8 +14,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import NightlightIcon from '@mui/icons-material/Nightlight';
 import { Link, useNavigate, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
+
 
 export const RoleTypes = {
     none: 0,
@@ -35,10 +39,12 @@ const pages = [
     { route: '/admin', title: 'User management', permissions: [RoleTypes.admin] },
 ];
 
-export default function Navbar() {
+
+
+export default function Navbar({ mode, toggleMode }) {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, setUser, setLoader, userRoleType, setUserRoleType } = useContext(GeneralContext);
+    const { user, setUser, setLoader, userRoleType, setUserRoleType, changeMode } = useContext(GeneralContext);
     const navigate = useNavigate();
     const path = useResolvedPath().pathname;
 
@@ -65,9 +71,9 @@ export default function Navbar() {
         })
             .then(() => {
                 setUser();
-                setUserRoleType(RoleTypes.none);
                 setLoader(false);
                 navigate('/');
+                setUserRoleType(RoleTypes.none);
             });
 
         handleCloseUserMenu();
@@ -161,6 +167,21 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </Box>
+
+
+
+
+                    <Box
+                        sx={{
+                          
+                        }}
+                        >
+                      
+                        <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
+                              <NightlightIcon/>{mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+                        </IconButton>
+                        </Box>
+
                     {
                         user ?
                         <Box sx={{ flexGrow: 0 }}>
