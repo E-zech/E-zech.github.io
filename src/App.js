@@ -6,6 +6,7 @@ import Loader from './components/Loader';
 import Footer from './components/Footer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import SearchBar from './components/SearchBar';
 
 export const GeneralContext = createContext();
 
@@ -14,14 +15,15 @@ function App() {
     const [loader, setLoader] = useState(true);
     const [userRoleType, setUserRoleType] = useState(RoleTypes.none);
     const [mode, setMode] = useState('light');
+    const [searchText, setSearchText] = useState("");
 
     const lightTheme = createTheme();
-const darkTheme = createTheme({
-  palette: {
+    const darkTheme = createTheme({
+    palette: {
     mode: 'dark',
-  },
-});
-
+    },
+    });
+    
     const toggleMode = () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
       };
@@ -59,9 +61,9 @@ const darkTheme = createTheme({
         
         <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
-        <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType }}>
+        <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText }}>
           <Navbar mode={mode} toggleMode={toggleMode} />
-          <Router />
+          <Router searchText={searchText} />
           {loader && <Loader />}
           <Footer />
         </GeneralContext.Provider>

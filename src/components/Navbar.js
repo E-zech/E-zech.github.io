@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Typography from '@mui/material/Typography';
-import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -17,6 +16,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import { Link, useNavigate, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
+import SearchBar from './SearchBar';
+
 
 
 export const RoleTypes = {
@@ -44,7 +45,7 @@ const pages = [
 export default function Navbar({ mode, toggleMode }) {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, setUser, setLoader, userRoleType, setUserRoleType, changeMode } = useContext(GeneralContext);
+    const { user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText } = useContext(GeneralContext);
     const navigate = useNavigate();
     const path = useResolvedPath().pathname;
 
@@ -65,15 +66,15 @@ export default function Navbar({ mode, toggleMode }) {
 
     const logout = () => {
         setLoader(true);
-
+        navigate('/');
+        
         fetch(`https://api.shipap.co.il/clients/logout`, {
             credentials: 'include',
         })
-            .then(() => {
-                setUser();
-                setLoader(false);
-                navigate('/');
-                setUserRoleType(RoleTypes.none);
+        .then(() => {
+            setUser();
+            setUserRoleType(RoleTypes.none);
+            setLoader(false);
             });
 
         handleCloseUserMenu();
@@ -168,6 +169,10 @@ export default function Navbar({ mode, toggleMode }) {
                         ))}
                     </Box>
                     
+
+                  <SearchBar filterCards={setSearchText}/>
+
+
                     <Box sx={{}} >
                         <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
                             {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}
