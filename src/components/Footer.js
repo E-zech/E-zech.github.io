@@ -5,17 +5,24 @@ import InfoIcon from '@mui/icons-material/Info';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import { RoleTypes } from './Navbar';
+import FooterLandingPage from './FooterLandingPage';
 
 export default function Footer() {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+  const path = useResolvedPath().pathname;
+  const { id } = useParams();
 
   const { user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText } = useContext(GeneralContext);
 
-
+  if (/^\/landing-page\/\d+$/.test(path)) {
+    return (
+        <FooterLandingPage/>
+    )
+ }
   return (
     <Box sx={{ width: '100%' ,
     bottom: '0'

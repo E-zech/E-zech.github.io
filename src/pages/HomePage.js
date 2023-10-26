@@ -18,6 +18,10 @@ export default function HomePage() {
   }, [])
   return (
       <>
+      <header>
+        <h1>כותרת ראשית </h1>
+        <h3>כותרת משנית </h3>
+      </header>
           <section className="container-cards">
               {
                   allCards.map(card => (

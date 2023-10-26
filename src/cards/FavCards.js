@@ -27,6 +27,9 @@ export default function FavCards() {
     }, [favCards])
     return (
         <>
+        <header>
+        <h1>כותרת מתאימה לדף זה </h1>
+        </header>
             <section className="container-cards">
                 {
                     favCards.map(card => (

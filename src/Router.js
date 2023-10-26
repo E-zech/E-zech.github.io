@@ -9,11 +9,13 @@ import UsersMenagment from './admin/UsersMenagment';
 import About from './pages/About';
 import EditCards from './cards/EditCard';
 import HomePage from './pages/HomePage';
+import LandingPage from './pages/LandingPage';
 
 export default function Router() {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/landing-page/:id" element={<LandingPage/>} />
             <Route path="/about" element={<About />} />
             <Route path="/my-cards" element={<MyCards />} />
             <Route path="/favorite" element={<FavCards />} />

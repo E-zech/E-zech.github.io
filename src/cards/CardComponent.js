@@ -86,6 +86,7 @@ export default function CardComponent({ card, setAllCard }) {
             height="194"
             image="https://picsum.photos/500/300" // {card.imgUrl}
             alt="Paella dish"
+            onClick={()=>navigate(`/landing-page/${card.id}`)}
           />
           <CardHeader title={card.title} subheader={card.subtitle} />
 

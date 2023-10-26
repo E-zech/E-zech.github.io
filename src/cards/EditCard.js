@@ -47,6 +47,10 @@ export default function EditCards() {
     };
 
     return (
+        <>
+        <header>
+            <h1>כותרת מתאימה לדף זה </h1>
+        </header>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -100,5 +104,7 @@ export default function EditCards() {
                 </Box>
             </Box>
         </Container>
+        </>
+        
     );
 }
