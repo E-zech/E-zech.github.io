@@ -178,7 +178,9 @@ export default function Navbar({ mode, toggleMode }) {
                </Box>
                
 
-           <SearchBar filterCards={setSearchText}/>
+               <Box sx={{ width: '20vw' }}>
+                    <SearchBar  />
+               </Box>
 
 
                <Box sx={{}} >
