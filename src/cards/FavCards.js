@@ -5,7 +5,7 @@ import CardComponent from './CardComponent';
 
 export default function FavCards() {
     const [favCards, setFavCards] = useState([]);
-    const { setAllCard, filteredCards } = useContext(GeneralContext);
+    const { setAllCard, filteredCards, setFilteredCards } = useContext(GeneralContext);
 
     useEffect(() => {
         fetch(`https://api.shipap.co.il/cards/favorite?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -25,9 +25,9 @@ export default function FavCards() {
             });
     }, [favCards]); 
 
-    const filteredFavCards = filteredCards.length > 0 ? favCards.filter(card => {
-        return filteredCards.some(filteredCard => filteredCard.id === card.id);
-    }) : favCards;
+    const filteredFavCards = favCards.filter(card => {
+     filteredCards.some(filteredCard => filteredCard.id === card.id);
+    }) ;
 
     return (
         <>

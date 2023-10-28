@@ -33,7 +33,7 @@ export default function MyCards() {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
-    const { setAllCard } = useContext(GeneralContext);
+    const { setAllCard, filteredCards, setFilteredCards } = useContext(GeneralContext);
 
     const schema = Joi.object({
       title: Joi.string().required().min(2).max(30),
@@ -120,6 +120,10 @@ export default function MyCards() {
             }).finally(toggleForm());
     }
 
+    const filteredMyCards = filteredCards.length > 0 ? allMyCards.filter(card => {
+      return filteredCards.some(filteredCard => filteredCard.id === card.id);
+  }) : allMyCards;
+  
     return (
         <>
           <div>
@@ -175,8 +179,8 @@ export default function MyCards() {
             </Container>
           )}
           <section className="container-cards">
-            {allMyCards.map((card) => (
-              <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
+            {filteredMyCards.map((card) => (
+              <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
             ))}
           </section>
         </>

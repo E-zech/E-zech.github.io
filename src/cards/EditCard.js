@@ -43,7 +43,7 @@ export default function EditCards() {
             .then(data => {
                 console.log(data)
 
-            }).finally(() => navigate('/'))
+            }).finally(() => navigate('/my-cards'))
     };
 
     return (
