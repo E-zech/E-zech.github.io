@@ -15,7 +15,7 @@ function App() {
     const [loader, setLoader] = useState(true);
     const [userRoleType, setUserRoleType] = useState(RoleTypes.none);
     const [mode, setMode] = useState('light');
-    const [searchText, setSearchText] = useState("");
+    const [filteredCards, setFilteredCards] = useState([]);
 
     const lightTheme = createTheme();
     const darkTheme = createTheme({
@@ -61,9 +61,9 @@ function App() {
         
         <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
-        <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText }}>
+        <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
           <Navbar mode={mode} toggleMode={toggleMode} />
-          <Router searchText={searchText} />
+          <Router />
           {loader && <Loader />}
           <Footer />
         </GeneralContext.Provider>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { GeneralContext } from '../App';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,8 +49,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
-  const [a1, setA1] = useState([]);
+  const [allCards, setAllCard] = useState([]);
 
+  const { filteredCards, setFilteredCards } = useContext(GeneralContext);
 
 useEffect(() => {
   fetch(`https://api.shipap.co.il/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -57,8 +59,8 @@ useEffect(() => {
   })
       .then(res => res.json())
       .then(data => {
-        setA1(data)
-          console.log(a1)
+        setAllCard(data);
+          setFilteredCards(data);
       });
 }, [])
 
@@ -66,12 +68,13 @@ useEffect(() => {
   const handleChange = (value) => {
     setSearchValue(value);
     console.log(value)
+  
+    const searchCards = allCards.filter(c => c.title.startsWith(value));
+    console.log(searchCards);
+
+    setFilteredCards(searchCards);
   };
   
-  const filteredCards = a1.filter(item => item.title.startsWith(searchValue));
-   console.log(filteredCards);
-
-  console.log(filteredCards);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

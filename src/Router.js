@@ -10,11 +10,12 @@ import About from './pages/About';
 import EditCards from './cards/EditCard';
 import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
+import filterdCards from './components/SearchBar';
 
 export default function Router() {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage filteredCards={filterdCards}/>} />
             <Route path="/landing-page/:id" element={<LandingPage/>} />
             <Route path="/about" element={<About />} />
             <Route path="/my-cards" element={<MyCards />} />
