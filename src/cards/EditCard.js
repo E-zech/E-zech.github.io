@@ -17,8 +17,10 @@ export default function EditCards() {
     const [formData, setFormData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
+    const { setLoader, snackbar } = useContext(GeneralContext);
 
     useEffect(() => {
+        setLoader(true);
         fetch(`https://api.shipap.co.il/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
         })
@@ -26,13 +28,15 @@ export default function EditCards() {
             .then((data) => {
                 setFormData(data);
                 console.log(data)
-            });
+            }).finally(()=>{
+                setLoader(false);
+            })
     }, [id]);
 
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        console.log(formData);
+        setLoader(true);
 
         fetch(`https://api.shipap.co.il/business/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
@@ -41,9 +45,12 @@ export default function EditCards() {
             body: JSON.stringify(formData),
         })
             .then(data => {
-                console.log(data)
-
-            }).finally(() => navigate('/my-cards'))
+                if (data.ok) {
+                    snackbar('Card updated successfully');
+                } else {
+                    snackbar('Error updating card');
+                }
+            }).finally(() =>  setLoader(false), navigate('/my-cards'))
     };
 
     return (

@@ -33,6 +33,7 @@ export default function MyCards() {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
+    const [refresh, setRefresh] = useState([]);
     const { setAllCard, filteredCards, setFilteredCards } = useContext(GeneralContext);
 
     const schema = Joi.object({
@@ -61,7 +62,7 @@ export default function MyCards() {
             .then(data => {
                 setAllMyCards(data)
             });
-    }, [allMyCards])
+    }, [refresh])
 
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible); 
@@ -120,9 +121,9 @@ export default function MyCards() {
             }).finally(toggleForm());
     }
 
-    const filteredMyCards = filteredCards.length > 0 ? allMyCards.filter(card => {
+    const filteredMyCards = allMyCards.filter(card => {
       return filteredCards.some(filteredCard => filteredCard.id === card.id);
-  }) : allMyCards;
+  });
   
     return (
         <>
@@ -178,11 +179,15 @@ export default function MyCards() {
               </Box>
             </Container>
           )}
-          <section className="container-cards">
-            {filteredMyCards.map((card) => (
-              <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
-            ))}
-          </section>
+        <section className="container-cards">
+          {filteredMyCards.length > 0 ? (
+            filteredMyCards.map(card => (
+              <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
+            ))
+          ) : (
+            <div>Results not found</div>
+          )}
+        </section>
         </>
       );
     }

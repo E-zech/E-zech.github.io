@@ -46,7 +46,7 @@ const pages = [
 export default function Navbar({ mode, toggleMode }) {
      const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText } = useContext(GeneralContext);
+    const { user, setUser, setLoader, userRoleType, setUserRoleType, snackbar } = useContext(GeneralContext);
     const navigate = useNavigate();
     const path = useResolvedPath().pathname;
     const { id } = useParams();
@@ -70,6 +70,7 @@ export default function Navbar({ mode, toggleMode }) {
     const logout = () => {
         setLoader(true);
         navigate('/');
+        snackbar('You have been successfully logged out');
         
         fetch(`https://api.shipap.co.il/clients/logout`, {
             credentials: 'include',

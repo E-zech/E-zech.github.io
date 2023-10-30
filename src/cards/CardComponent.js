@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function CardComponent({ card, setAllCard }) {
-  const { user, setLoader, userRoleType } = useContext(GeneralContext);
+  const { user, setLoader, userRoleType , snackbar} = useContext(GeneralContext);
   const navigate = useNavigate();
 
 
@@ -31,15 +31,18 @@ export default function CardComponent({ card, setAllCard }) {
       `https://api.shipap.co.il/cards/${id}/unfavorite?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0` :
       `https://api.shipap.co.il/cards/${id}/favorite?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`;
 
+      const snackbarMessage = favorite ? 'Removed from Favorites' : 'Added to Favorites';
+
     fetch(url, {
       credentials: 'include',
       method: 'PUT',
     })
-      .then(() => { // Update the allCards state to mark the card as a favorite or not
+      .then(() => { 
         setAllCard((allCards) =>
           allCards.map((card) =>
             card.id === id ? { ...card, favorite: !favorite } : card));
         setLoader(false);
+        snackbar(snackbarMessage);
       });
   };
 
@@ -66,6 +69,7 @@ export default function CardComponent({ card, setAllCard }) {
             allCards.filter((card) => card.id !== id)
           );
           setLoader(false);
+          snackbar('Card deleted successfully');
         });
     } else {
       setLoader(false);

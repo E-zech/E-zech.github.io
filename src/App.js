@@ -7,15 +7,23 @@ import Footer from './components/Footer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import SearchBar from './components/SearchBar';
+import SnackBar from './components/Snackbar';
+
 
 export const GeneralContext = createContext();
 
 function App() {
     const [user, setUser] = useState();
     const [loader, setLoader] = useState(true);
+    const [snackbarText, setSnackbarText] = useState('');
     const [userRoleType, setUserRoleType] = useState(RoleTypes.none);
     const [mode, setMode] = useState('light');
     const [filteredCards, setFilteredCards] = useState([]);
+
+    const snackbar = text => {
+        setSnackbarText(text);
+        setTimeout(() => setSnackbarText(''), 1 * 1000);
+    }
 
     const lightTheme = createTheme();
     const darkTheme = createTheme({
@@ -61,10 +69,11 @@ function App() {
         
         <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
-        <GeneralContext.Provider value={{ user, setUser, setLoader, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
+        <GeneralContext.Provider value={{ user, setUser, setLoader, snackbar, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
           <Navbar mode={mode} toggleMode={toggleMode} />
           <Router />
           {loader && <Loader />}
+          {snackbarText && <SnackBar text={snackbarText} />}
           <Footer />
         </GeneralContext.Provider>
       </ThemeProvider>

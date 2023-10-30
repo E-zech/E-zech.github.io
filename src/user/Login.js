@@ -24,7 +24,7 @@ export default function Login() {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const navigate = useNavigate();
-    const { setUser, setLoader, setUserRoleType } = useContext(GeneralContext);
+    const { setUser, setLoader, snackbar ,setUserRoleType } = useContext(GeneralContext);
 
     const schema = Joi.object({
         email: Joi.string()
@@ -39,6 +39,8 @@ export default function Login() {
                         "any.required": "Password is required",
                       }),
     });
+    
+  
 
     const handelChange = ev => {
         const { name, value } = ev.target;
@@ -95,13 +97,15 @@ export default function Login() {
             }
 
             navigate('/');
+            snackbar('log-in successful');
         })
         .catch(err => {
-            alert(err.message);
+            snackbar('Username or password is incorrect');
         })
-        .finally(() => setLoader(false));
+        .finally(() => setLoader(false),
+        );
     };
-
+   
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">

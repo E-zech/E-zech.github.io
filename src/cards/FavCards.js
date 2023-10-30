@@ -5,9 +5,11 @@ import CardComponent from './CardComponent';
 
 export default function FavCards() {
     const [favCards, setFavCards] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards } = useContext(GeneralContext);
+    const [refresh, setRefresh] = useState([]);
+    const { setAllCard, filteredCards, setFilteredCards , setLoader} = useContext(GeneralContext);
 
     useEffect(() => {
+        setLoader(true);
         fetch(`https://api.shipap.co.il/cards/favorite?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
         })
@@ -22,11 +24,11 @@ export default function FavCards() {
             })
             .then(data => {
                 setFavCards(data);
-            });
-    }, [favCards]); 
+            }).finally(()=> setLoader(false))
+    }, [refresh]); 
 
     const filteredFavCards = favCards.filter(card => {
-     filteredCards.some(filteredCard => filteredCard.id === card.id);
+   return  filteredCards.some(filteredCard => filteredCard.id === card.id);
     }) ;
 
     return (
@@ -37,7 +39,7 @@ export default function FavCards() {
             <section className="container-cards">
                 {filteredFavCards.length > 0 ? (
                     filteredFavCards.map(card => (
-                        <CardComponent key={card.id} card={card} setAllCard={setFavCards} />
+                        <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
                     ))
                 ) : (
                     <div>Results not found</div>
