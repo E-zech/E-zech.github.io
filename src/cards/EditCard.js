@@ -37,20 +37,22 @@ export default function EditCards() {
     const handleSubmit = (ev) => {
         ev.preventDefault();
         setLoader(true);
-
+    
         fetch(`https://api.shipap.co.il/business/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'PUT',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then(data => {
+            .then((data) => {
                 if (data.ok) {
                     snackbar('Card updated successfully');
+                    navigate('/my-cards'); 
                 } else {
                     snackbar('Error updating card');
                 }
-            }).finally(() =>  setLoader(false), navigate('/my-cards'))
+            })
+            .finally(() => setLoader(false));
     };
 
     return (
@@ -106,7 +108,7 @@ export default function EditCards() {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Save
+                        Save Changes
                     </Button>
                 </Box>
             </Box>

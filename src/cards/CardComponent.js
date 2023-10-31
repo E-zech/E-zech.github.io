@@ -88,7 +88,7 @@ export default function CardComponent({ card, setAllCard }) {
           <CardMedia
             component="img"
             height="194"
-            image="https://picsum.photos/500/300" // {card.imgUrl}
+            image={card.imgUrl}
             alt="Paella dish"
             onClick={()=>navigate(`/landing-page/${card.id}`)}
           />

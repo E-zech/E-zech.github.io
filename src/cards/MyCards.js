@@ -34,7 +34,7 @@ export default function MyCards() {
     const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [refresh, setRefresh] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards } = useContext(GeneralContext);
+    const { setAllCard, filteredCards, setFilteredCards , snackbar } = useContext(GeneralContext);
 
     const schema = Joi.object({
       title: Joi.string().required().min(2).max(30),
@@ -60,7 +60,7 @@ export default function MyCards() {
         })
             .then(res => res.json())
             .then(data => {
-                setAllMyCards(data)
+                setAllMyCards(data);
             });
     }, [refresh])
 
@@ -117,8 +117,8 @@ export default function MyCards() {
         })
             .then(res => res.json())
             .then(data => {
-                setFormData(formData)
-            }).finally(toggleForm());
+                setFormData(formData);
+            }).finally(toggleForm(), snackbar('Card added'));
     }
 
     const filteredMyCards = allMyCards.filter(card => {
@@ -173,7 +173,7 @@ export default function MyCards() {
                     ))}
                   </Grid>
                   <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isFormValid}>
-                    Save
+                    Add Card
                   </Button>
                 </Box>
               </Box>

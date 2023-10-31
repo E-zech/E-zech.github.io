@@ -20,8 +20,9 @@ export default function HomePage() {
   return (
     <>
       <header>
-        <h1>כותרת ראשית</h1>
-        <h3>כותרת משנית</h3>
+      <h1>Plan Yout Next Trip Here</h1>
+      <h3>Discover the World's Most Thrilling and Breathtaking Adventures!</h3>
+      
       </header>
       <section className="container-cards">
         {filteredCards.length > 0 ? (

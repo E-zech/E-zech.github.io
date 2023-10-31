@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import './NavbarLandingPage.css';
 
 const pages = ['Home', 'About us', 'Contact'];
 
@@ -38,7 +39,10 @@ export default function NavbarLandingPage() {
   };
 
   return (
-    <AppBar position="static">
+    <>
+    <div className='container'>
+<div className='navbar-wraper'>
+<AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -127,6 +131,11 @@ export default function NavbarLandingPage() {
         </Toolbar>
       </Container>
     </AppBar>
+    </div>
+    </div>
+    
+    </>
+    
   );
 }
 
