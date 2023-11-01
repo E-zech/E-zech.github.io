@@ -108,28 +108,26 @@ export default function CardComponent({ card, setAllCard }) {
           </CardContent>
 
           <CardActions disableSpacing>
-            <IconButton>
-              < LocalPhoneIcon aria-label="phone" />
-            </IconButton>
-            {
+  <IconButton>
+    <LocalPhoneIcon aria-label="phone" />
+  </IconButton>
+  {user && (
+    <IconButton id='favoriteBtn' aria-label="add to favorites" onClick={() => toggleFavOrNot(card.id, card.favorite)}>
+      <FavoriteIcon color={card.favorite ? "error" : ""} />
+    </IconButton>
+  )}
+  {((userRoleType === RoleTypes.business && card.clientId === user.id) || (userRoleType === RoleTypes.admin && card.clientId === 0)) && (
+    <IconButton aria-label="edit" onClick={() => navigate(`/edit-cards/${card.id}`)}>
+      <ModeEditIcon />
+    </IconButton>
+  )}
+  {((userRoleType === RoleTypes.business && card.clientId === user.id) || userRoleType === RoleTypes.admin) && (
+    <IconButton aria-label="delete" onClick={() => deleteCard(card.id, userRoleType)}>
+      <DeleteIcon />
+    </IconButton>
+  )}
+</CardActions>
 
-              user &&
-              <IconButton id='favoriteBtn' IconButton aria-label="add to favorites"
-                onClick={() => toggleFavOrNot(card.id, card.favorite)} >
-                <FavoriteIcon color={card.favorite ? "error" : ""} />
-              </IconButton>}
-              {
-              ((userRoleType == RoleTypes.business && card.clientId === user.id) || userRoleType == RoleTypes.admin) &&
-                <>
-                <IconButton IconButton aria-label="edit"  >
-                      <ModeEditIcon onClick={() => navigate(`/edit-cards/${card.id}`)}/>
-                </IconButton>
-                  <IconButton IconButton aria-label="delete" >
-                          < DeleteIcon onClick={() => deleteCard(card.id, userRoleType)} />
-                        </IconButton>
-                </>
-            } 
-          </CardActions>
         </Card >
       </section>
 

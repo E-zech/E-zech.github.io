@@ -26,13 +26,14 @@ export default function Home() {
             <header id="about-us">
             <h1 className="main-title ">{card.title}</h1>
             <h2 className="sub-title ">{card.subtitle}</h2>
-            <h3 className="description">{card.description}</h3>
+            
             </header>
     
 <br></br>
             <div className="photos-container">
                 <img src={card.imgUrl}/>
             </div>
+            <h3 className="description">{card.description}</h3>
 <br /><br />
           <section className="contact" id="contact">
             <h1>contact us </h1>
@@ -43,15 +44,15 @@ export default function Home() {
             
 <br /><br />
 // google maps ?
-<section className="location">
-        <Map id={id}/>
-             <h4>{card.country}</h4>
+        <section className="location">
+            <Map id={id}/>
+            <h4>{card.country}</h4>
             <h4>{card.state}</h4>
             <h4>{card.city}</h4>
             <h4>{card.street}</h4>
             <h4>{card.houseNumber}</h4>
             <h4>{card.zip}</h4>
-</section>
+        </section>
 
             
            

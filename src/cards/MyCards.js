@@ -53,7 +53,6 @@ export default function MyCards() {
       zip: Joi.number().required(),
     });
   
-
     useEffect(() => {
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
@@ -69,7 +68,7 @@ export default function MyCards() {
         if (!isFormVisible) {
           setFormData({});
           setErrors({});
-      }
+        }
       };
 
     const handleChange = (event) => {
@@ -118,7 +117,10 @@ export default function MyCards() {
             .then(res => res.json())
             .then(data => {
                 setFormData(formData);
-            }).finally(toggleForm(), snackbar('Card added'));
+            }).finally(()=>{
+              toggleForm();
+               snackbar('Card added');
+            });
     }
 
     const filteredMyCards = allMyCards.filter(card => {
@@ -129,17 +131,29 @@ export default function MyCards() {
         <>
           <div>
             <h3>ניהול הכרטיסים שלי : הוספה\צפייה\עריכה\מחיקה</h3>
-          </div>
-          <Button
+          </div>  
+          
+          <section className="container-cards">
+          {filteredMyCards.length > 0 ? (
+            filteredMyCards.map(card => (
+              <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
+            ))
+          ) : (
+            <div>Results not found</div>
+          )}
+        </section>
+
+         <a href="#addCard">  <Button
             variant="contained"
             color={isFormVisible ? 'secondary' : 'primary'}
             onClick={toggleForm}
           >
             {isFormVisible ? 'Close' : 'Add Card'}
-          </Button>
-
+          </Button></a>
+        
+        <br id='addCard'/>
           {isFormVisible && (
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs"  >
               <CssBaseline />
               <Box
                 sx={{
@@ -179,15 +193,7 @@ export default function MyCards() {
               </Box>
             </Container>
           )}
-        <section className="container-cards">
-          {filteredMyCards.length > 0 ? (
-            filteredMyCards.map(card => (
-              <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
-            ))
-          ) : (
-            <div>Results not found</div>
-          )}
-        </section>
+      
         </>
       );
     }

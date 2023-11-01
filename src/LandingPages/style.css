@@ -4,23 +4,24 @@
 }
 
 .main-title,
-.sub-title,
-.description{
+.sub-title{
     text-align: center;
     color: white;
 }
 
 .main-title{
-    padding-top: 100px;
-font-size: 3.5rem;
+padding-top: 67px;
+font-size: 3.8rem;
 }
 
 .sub-title{
-font-size: 2.5rem;
+font-size: 1.7rem;
+margin-top: -20px;
 }
 
 .description{
-font-size: 1.3rem;
+font-size: 1.5rem;
+text-align: center;
 }
 
 .photos-container{

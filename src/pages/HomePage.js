@@ -20,8 +20,8 @@ export default function HomePage() {
   return (
     <>
       <header>
-      <h1>Plan Yout Next Trip Here</h1>
-      <h3>Discover the World's Most Thrilling and Breathtaking Adventures!</h3>
+      <h1>Queenstown Activities</h1>
+      <h3>Explore Queenstown's Most Thrilling and Breathtaking Adventures!</h3>
       
       </header>
       <section className="container-cards">
