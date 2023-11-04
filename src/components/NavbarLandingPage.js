@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './NavbarLandingPage.css';
 
-const pages = ['Home', 'About us', 'Contact'];
+const pages = ['Home', 'About', 'Contact'];
 
 
 export default function NavbarLandingPage() {
@@ -94,7 +94,7 @@ export default function NavbarLandingPage() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" >{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

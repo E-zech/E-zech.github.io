@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <>
       
-        <section className="body-container">
+        <section className="body-container" id="about">
             <header id="about-us">
             <h1 className="main-title ">{card.title}</h1>
             <h2 className="sub-title ">{card.subtitle}</h2>
@@ -33,7 +33,7 @@ export default function Home() {
             <div className="photos-container">
                 <img src={card.imgUrl}/>
             </div>
-            <h3 className="description">{card.description}</h3>
+            <h3 className="description" id="about">{card.description}</h3>
 <br /><br />
           <section className="contact" id="contact">
             <h1>contact us </h1>
