@@ -39,3 +39,10 @@ text-align: center;
     text-align: center;
 }
 
+
+
+
+
+@media screen and (max-width: 450px) {
+    .main-title{font-size: 3rem;}
+}

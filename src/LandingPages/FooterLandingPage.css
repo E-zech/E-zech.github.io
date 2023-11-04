@@ -1,0 +1,28 @@
+.footer{
+  width: 98.5vw;
+  height: auto;
+  background-color: brown;
+  text-align: center;
+}
+.footer-headline {
+  padding-top: 15px;
+  font-size: 2.7rem;
+}
+.footer-secHeadLine{
+  margin-top: -10px;
+  font-size: 1.8rem;
+}
+
+.footer-contactWrapeer{
+  width: 98.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0 ;
+  gap: 50px;
+  
+}
+
+.footer-txt{
+  font-size:1rem;
+}

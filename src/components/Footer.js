@@ -8,7 +8,8 @@ import { useContext, useState } from 'react';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import { RoleTypes } from './Navbar';
-import FooterLandingPage from './FooterLandingPage';
+
+
 
 export default function Footer() {
   const [value, setValue] = useState(0);
@@ -19,9 +20,7 @@ export default function Footer() {
   const { user, setUser, setLoader, userRoleType, setUserRoleType, setSearchText } = useContext(GeneralContext);
 
   if (/^\/landing-page\/\d+$/.test(path)) {
-    return (
-        <FooterLandingPage/>
-    )
+    return null;
  }
   return (
     <Box sx={{ width: '100%' ,

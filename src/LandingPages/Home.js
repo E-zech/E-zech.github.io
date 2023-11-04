@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import './style.css';
+import './FooterLandingPage.css';
 import Map from "./Map";
+
 
 
 export default function Home() {
@@ -35,16 +37,8 @@ export default function Home() {
             </div>
             <h3 className="description" id="about">{card.description}</h3>
 <br /><br />
-          <section className="contact" id="contact">
-            <h1>contact us </h1>
-            <h4>our mail :{card.email}</h4>
-            <h4>our phone :{card.phone}</h4>
-          </section>
-            
-            
-<br /><br />
-// google maps ?
-        <section className="location">
+          
+               <section className="location">
             <Map id={id}/>
             <h4>{card.country}</h4>
             <h4>{card.state}</h4>
@@ -53,12 +47,20 @@ export default function Home() {
             <h4>{card.houseNumber}</h4>
             <h4>{card.zip}</h4>
         </section>
-
             
-           
-            
-
-           
+<br /><br />
+     
+            <footer className="footer">
+                <h1 className="footer-headline">Contact Us</h1>
+                <h1 className="footer-secHeadLine">{card.title}</h1>
+                <div className="footer-contactWrapeer">
+                <h4 className="footer-txt"> Email : {card.email}</h4>
+                <h4 className="footer-txt"> Phone : {card.phone}</h4>
+                <h4 className="footer-txt">
+                    {card.country}, {card.city}, {card.street} {card.houseNumber}, {card.zip}
+                </h4>
+                </div>
+            </footer>
         </section>
         </>
         
