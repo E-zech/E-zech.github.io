@@ -1,12 +1,18 @@
 .body-container{
-    background-color: burlywood;
+    background-color:#e5d3a4;
     margin-top: -122px;
+}
+.hr {
+    margin: 0 auto;
+    width: 72vw;
+    border-radius: 50%;
+    border: 4px double #00000094;
 }
 
 .main-title,
 .sub-title{
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .main-title{

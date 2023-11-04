@@ -1,11 +1,12 @@
 .footer{
-  width: 98.5vw;
+  width: 100%;
   height: auto;
-  background-color: brown;
+  background: rgb(159,227,240);
+  background: linear-gradient(0deg, rgba(159,227,240,1) 42%, rgba(229,211,164,1) 83%);
   text-align: center;
 }
 .footer-headline {
-  padding-top: 15px;
+  padding-top: 70px;
   font-size: 2.7rem;
 }
 .footer-secHeadLine{

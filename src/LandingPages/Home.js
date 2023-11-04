@@ -38,18 +38,12 @@ export default function Home() {
             <h3 className="description" id="about">{card.description}</h3>
 <br /><br />
           
-               <section className="location">
+            <section className="location">
             <Map id={id}/>
-            <h4>{card.country}</h4>
-            <h4>{card.state}</h4>
-            <h4>{card.city}</h4>
-            <h4>{card.street}</h4>
-            <h4>{card.houseNumber}</h4>
-            <h4>{card.zip}</h4>
         </section>
             
 <br /><br />
-     
+     <hr className="hr" />
             <footer className="footer">
                 <h1 className="footer-headline">Contact Us</h1>
                 <h1 className="footer-secHeadLine">{card.title}</h1>

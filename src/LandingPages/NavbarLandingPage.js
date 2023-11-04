@@ -42,7 +42,13 @@ export default function NavbarLandingPage() {
     <>
     <div className='container'>
 <div className='navbar-wraper'>
-<AppBar position="static" >
+<AppBar position="static" 
+sx={{
+  backgroundColor:'black',
+  background:'rgb(0,0,0)',
+  background:'linear-gradient(90deg, rgba(47,47,47,0.9276960784313726) 0%, rgba(0,0,0,1) 2%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,1) 98%, rgba(51,51,51,0.9024859943977591) 100%)',
+  borderRadius:'17px'
+  }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters >
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

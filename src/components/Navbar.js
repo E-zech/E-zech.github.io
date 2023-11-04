@@ -17,7 +17,8 @@ import NightlightIcon from '@mui/icons-material/Nightlight';
 import { Link, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import SearchBar from './SearchBar';
-import NavbarLandingPage from './NavbarLandingPage';
+import NavbarLandingPage from '../LandingPages/NavbarLandingPage';
+
 
 
 
