@@ -94,7 +94,6 @@ export default function Navbar({ mode, toggleMode }) {
     <AppBar position="static">
         <Container maxWidth="xl">
            <Toolbar disableGutters>
-               <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                <Typography
                    variant="h6"
                    noWrap
@@ -142,7 +141,6 @@ export default function Navbar({ mode, toggleMode }) {
                        ))}
                    </Menu>
                </Box>
-               <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                <Typography
                    variant="h5"
                    noWrap

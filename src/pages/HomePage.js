@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import CardComponent from "../cards/CardComponent";
 import { GeneralContext } from "../App";
+import './HomePage.css';
 
 export default function HomePage() {
   const [allCards, setAllCard] = useState([]);
@@ -19,9 +20,9 @@ export default function HomePage() {
 
   return (
     <>
-      <header>
-      <h1>Queenstown Activities</h1>
-      <h3>Explore Queenstown's Most Thrilling and Breathtaking Adventures!</h3>
+      <header className="header"> 
+      <h1 className="main-headline">Queenstown Activities</h1>
+      <h3 className="sec-headline">Explore Queenstown's Most Thrilling and Breathtaking Adventures !</h3>
       
       </header>
       <section className="container-cards">

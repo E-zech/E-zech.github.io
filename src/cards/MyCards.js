@@ -117,6 +117,7 @@ export default function MyCards() {
             .then(res => res.json())
             .then(data => {
                 setFormData(formData);
+                setAllMyCards([...allMyCards, data]);
             }).finally(()=>{
               toggleForm();
                snackbar('Card added');

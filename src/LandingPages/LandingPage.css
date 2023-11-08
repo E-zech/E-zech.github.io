@@ -1,0 +1,144 @@
+/* class that start with LP mean Landing Page*/
+*{
+    box-sizing: border-box;
+    padding: 0;    
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.LP-body-container{
+    background-color:#fff4d6d6;
+    margin-top: -122px;
+}
+
+
+.LP-hr {
+    margin: 0 auto;
+    width: 72vw;
+    border-radius: 50%;
+    border: 4px double #00000094;
+}
+
+.LP-main-title,
+.LP-sub-title{
+    text-align: center;
+    color: black;
+    font-family: ui-monospace;
+}
+
+.LP-main-title{
+padding-top: 67px;
+font-size: 3.8rem;
+}
+
+
+.LP-sub-title{
+font-size:1.5rem;
+margin-top: -20px;
+padding: 0 10px;
+}
+
+.LP-description {
+    padding: 15px;
+    width: 70vw;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    text-align: justify;
+    line-height: 1.7;
+    font-weight: bold;
+}
+
+.LP-photos-container{
+ width: 98.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LP-photo{
+    width: 70vw;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.LP-photo:hover{
+    border-radius: 1px;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.LP-contact {
+    text-align: center;
+}
+
+.LP-location{
+    text-align: center;
+}
+
+.LP-up-button{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 2rem;
+}
+
+.LP-footer{
+    width: 100%;
+    height: auto;
+    background: rgb(159,227,240);
+    background: linear-gradient(0deg, #b7f0fbbf 42%, #fff4d6d6 83%);
+    text-align: center;
+  }
+  .LP-footer-headline {
+    padding-top: 70px;
+    font-size: 2.7rem;
+    font-family: ui-monospace;
+  }
+  .LP-footer-secHeadLine{
+    margin-top: -10px;
+    font-size: 1.8rem;
+    font-family: ui-monospace;
+    padding: 0 5px;
+  }
+  
+  .LP-footer-contactWrapeer{
+    width: 98.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0 ;
+    gap: 50px;
+    
+  }
+  
+  .LP-footer-txt{
+    font-size:1rem;
+  }
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .LP-footer-contactWrapeer{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .LP-footer-contactWrapeer{
+        display: block;
+        padding: 1px 70px;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .LP-main-title{font-size: 3rem;}
+
+    .LP-up-button{
+        right: 2px;
+        bottom: 2px;
+    }
+}

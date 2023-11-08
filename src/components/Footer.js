@@ -23,10 +23,15 @@ export default function Footer() {
     return null;
  }
   return (
-    <Box sx={{ width: '100%' ,
-    bottom: '0'
+    <>
+ 
+      <Box sx={{ width: '100%' ,
+    height:'auto',
+    bottom: '0',
+    position:'fixed',
     }}>
       <BottomNavigation
+      sx={{ backgroundColor:'#edf2fb'}}
         showLabels
         value={value}
         onChange={(event, newValue) => {
@@ -44,5 +49,8 @@ export default function Footer() {
       
       </BottomNavigation>
     </Box>
+  
+    </>
+    
   );
 }

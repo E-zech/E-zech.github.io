@@ -1,4 +1,4 @@
-// import './Card.css';
+
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -17,6 +17,7 @@ import { RoleTypes } from "../components/Navbar";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import './CardComponent.css';
 
 
 export default function CardComponent({ card, setAllCard }) {
@@ -82,7 +83,7 @@ export default function CardComponent({ card, setAllCard }) {
     <>
       <section className='container-cards' >
 
-        <Card Card sx={{ maxWidth: 345 }}
+        <Card Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' }}
           key={card.id}
           className='card' >
           <CardMedia
@@ -92,18 +93,25 @@ export default function CardComponent({ card, setAllCard }) {
             alt="Paella dish"
             onClick={()=>navigate(`/landing-page/${card.id}`)}
           />
-          <CardHeader title={card.title} subheader={card.subtitle} />
-
           <CardContent>
             <Typography color="text.secondary">
-
-              <b>phone:</b> {card.phone}
-              <br />
-              <br />
-              <b>Adress:</b> {card.state} {card.city} {card.street} {card.houseNumber} {card.zip}
-              <br />
-              <br />
-              <b>Card Number:</b> {card.id}
+      <div className="card-container">
+        <h1 className="main-title">
+          {card.title}
+        </h1>
+        <h3 className="sec-title">
+          {card.subtitle}
+        </h3>
+        <span className="phone cardSpan">
+        <b>phone:</b> {card.phone}
+        </span>
+        <span className="adress cardSpan">
+            <b>Adress:</b> {card.state} {card.city} {card.street} {card.houseNumber} {card.zip}
+        </span>
+        <span className="card-number cardSpan">
+            <b>Card Number:</b> {card.id}
+        </span>
+      </div>
             </Typography>
           </CardContent>
 

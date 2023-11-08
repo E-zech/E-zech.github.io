@@ -36,7 +36,7 @@ export default function FavCards() {
         <header>
         <h1>כותרת מתאימה לדף זה</h1>
         </header>
-            <section className="container-cards">
+            <section>
                 {filteredFavCards.length > 0 ? (
                     filteredFavCards.map(card => (
                         <CardComponent key={card.id} card={card} setAllCard={setRefresh} />

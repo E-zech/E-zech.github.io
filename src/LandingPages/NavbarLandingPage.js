@@ -40,18 +40,19 @@ export default function NavbarLandingPage() {
 
   return (
     <>
-    <div className='container'>
+    <div className='container' id="up">
 <div className='navbar-wraper'>
 <AppBar position="static" 
 sx={{
   backgroundColor:'black',
   background:'rgb(0,0,0)',
   background:'linear-gradient(90deg, rgba(47,47,47,0.9276960784313726) 0%, rgba(0,0,0,1) 2%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,1) 98%, rgba(51,51,51,0.9024859943977591) 100%)',
-  borderRadius:'17px'
+  borderRadius:'17px',
+  boxShadow: '0px 5px 10px #ffffff'
+
   }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" >
         <Toolbar disableGutters >
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -63,6 +64,7 @@ sx={{
               fontWeight: 700,
               color: 'inherit',
               textDecoration: 'none',
+              
             }}
             onClick={()=> navigate('/')}
           >
@@ -100,12 +102,15 @@ sx={{
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" >{page}</Typography>
+                  <Typography textAlign="center" >
+                    
+                  {page}
+                    
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -120,6 +125,7 @@ sx={{
               color: 'inherit',
               textDecoration: 'none',
             }}
+            onClick={()=> navigate('/')}
           >
               Back to app
           </Typography>

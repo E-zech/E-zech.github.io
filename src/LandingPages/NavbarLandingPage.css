@@ -2,11 +2,10 @@
     width: 100%;
     height: 145px;
     background: rgb(230,251,255);
-    background: linear-gradient(0deg, rgba(230,251,255,0.6223739495798319) 14%, rgba(0,212,255,1) 86%);
+    background: linear-gradient(0deg, rgba(230,251,255,0.6223739495798319) 14%, rgb(0 212 255 / 50%) 86%);
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .navbar-wraper { 
