@@ -8,6 +8,7 @@ import { useContext, useState } from 'react';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import { RoleTypes } from './Navbar';
+import '../App.css';
 
 
 
@@ -24,8 +25,8 @@ export default function Footer() {
  }
   return (
     <>
- 
-      <Box sx={{ width: '100%' ,
+ <footer className='footer'>
+  <Box sx={{ width: '100%' ,
     height:'auto',
     bottom: '0',
     position:'fixed',
@@ -49,6 +50,8 @@ export default function Footer() {
       
       </BottomNavigation>
     </Box>
+ </footer>
+    
   
     </>
     

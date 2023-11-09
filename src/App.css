@@ -1,7 +1,33 @@
 .container-cards{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items:center ;
-    gap: 1.2rem;
+    align-items: center;
+    width: 100%;
     margin-top: 10px;
+}
+
+.grid-cards{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+.footer{
+    padding-top: 100px;
+}
+
+
+@media screen and (max-width:1000px) {
+    .grid-cards{
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media screen and (max-width:700px) {
+    .grid-cards{
+        grid-template-columns: repeat(1, auto);
+    }
+    
 }

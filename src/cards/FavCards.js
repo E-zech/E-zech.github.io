@@ -3,6 +3,7 @@ import * as React from "react";
 import { GeneralContext } from "../App";
 import CardComponent from './CardComponent';
 
+
 export default function FavCards() {
     const [favCards, setFavCards] = useState([]);
     const [refresh, setRefresh] = useState([]);
@@ -36,14 +37,15 @@ export default function FavCards() {
         <header>
         <h1>כותרת מתאימה לדף זה</h1>
         </header>
-            <section>
-                {filteredFavCards.length > 0 ? (
+            <section className="container-cards">
+            <div className="grid-cards">{filteredFavCards.length > 0 ? (
                     filteredFavCards.map(card => (
                         <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
                     ))
                 ) : (
                     <div>Results not found</div>
-                )}
+                )}</div>
+                
             </section>
         </>
     )

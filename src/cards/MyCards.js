@@ -61,7 +61,7 @@ export default function MyCards() {
             .then(data => {
                 setAllMyCards(data);
             });
-    }, [refresh])
+    }, [filteredCards])
 
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible); 
@@ -117,7 +117,7 @@ export default function MyCards() {
             .then(res => res.json())
             .then(data => {
                 setFormData(formData);
-                setAllMyCards([...allMyCards, data]);
+                setFilteredCards([...filteredMyCards, data]);
             }).finally(()=>{
               toggleForm();
                snackbar('Card added');
@@ -135,13 +135,16 @@ export default function MyCards() {
           </div>  
           
           <section className="container-cards">
-          {filteredMyCards.length > 0 ? (
+          <div className="grid-cards">
+ {filteredMyCards.length > 0 ? (
             filteredMyCards.map(card => (
               <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
             ))
           ) : (
             <div>Results not found</div>
           )}
+          </div>
+         
         </section>
 
          <a href="#addCard">  <Button

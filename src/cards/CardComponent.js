@@ -95,7 +95,7 @@ export default function CardComponent({ card, setAllCard }) {
           />
           <CardContent>
             <Typography color="text.secondary">
-      <div className="card-container">
+      <div className="card-wrapper">
         <h1 className="main-title">
           {card.title}
         </h1>
@@ -103,13 +103,13 @@ export default function CardComponent({ card, setAllCard }) {
           {card.subtitle}
         </h3>
         <span className="phone cardSpan">
-        <b>phone:</b> {card.phone}
+        <span className="bold-spn">Phone:</span> {card.phone}
         </span>
         <span className="adress cardSpan">
-            <b>Adress:</b> {card.state} {card.city} {card.street} {card.houseNumber} {card.zip}
+            <span className="bold-spn">Adress:</span> {card.state}, {card.city}. <br/> {card.street}. {card.houseNumber}. {card.zip}.
         </span>
         <span className="card-number cardSpan">
-            <b>Card Number:</b> {card.id}
+            <span className="bold-spn">Card Number:</span> {card.id}
         </span>
       </div>
             </Typography>

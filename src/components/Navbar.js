@@ -176,11 +176,12 @@ export default function Navbar({ mode, toggleMode }) {
                        </Link>
                    ))}
                </Box>
-               
-               <Box sx={{ width: '20vw' }}>
+               {path !== '/admin' && (
+                   <Box sx={{ width: '20vw' }}>
                     <SearchBar  />
                </Box>
-
+               )
+               }
                <Box sx={{}} >
                    <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
                        {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}

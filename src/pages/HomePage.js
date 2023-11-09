@@ -26,13 +26,16 @@ export default function HomePage() {
       
       </header>
       <section className="container-cards">
-        {filteredCards.length > 0 ? (
+        <div className="grid-cards">
+          {filteredCards.length > 0 ? (
           filteredCards.map(card => (
             <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
           ))
         ) : (
           <div>Results not found</div>
         )}
+        </div>
+        
       </section>
     </>
   );

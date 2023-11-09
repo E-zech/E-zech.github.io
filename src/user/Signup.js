@@ -32,10 +32,11 @@ export const clientStructure = [
   { name: 'street', type: 'text', label: 'Street', required: true, block: false },
   { name: 'houseNumber', type: 'number', label: 'House Number', required: true, block: false },
   { name: 'zip', type: 'number', label: 'Zip', required: true, block: false },
-  { name: 'business', type: 'boolean', label: 'Business', required: true, block: false },
+  { name: 'business', type: 'boolean', label: 'Business', block: false },
 ];
 
 export default function Signup() {
+
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
@@ -51,7 +52,7 @@ export default function Signup() {
     street: '',
     houseNumber: '',
     zip: '',
-    business: '',
+   
   });
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
@@ -60,7 +61,7 @@ export default function Signup() {
 
   const schema = Joi.object({
     firstName: Joi.string().required().min(2).max(20).pattern(/^[A-Za-z]+$/).message('"First Name" should only contain letters'),
-    middleName: Joi.string().required().min(2).max(20).pattern(/^[A-Za-z]+$/).message('"Middle Name" should only contain letters'),
+    middleName: Joi.string().min(2).max(20).pattern(/^[A-Za-z]+$/).message('"Middle Name" should only contain letters').optional(),
     lastName: Joi.string().required().min(2).max(20).pattern(/^[A-Za-z]+$/).message('"Last Name" should only contain letters'),
     phone: Joi.string().required().pattern(/^\d{10}$/).message('"Phone number" must be 10 digits long'),
     email: Joi.string().email({ tlds: false }).required(),
@@ -74,29 +75,42 @@ export default function Signup() {
     street: Joi.string().required(),
     houseNumber: Joi.number().required(),
     zip: Joi.number().required(),
-    business: Joi.boolean().required(),
+    business: Joi.boolean().allow(),
   });
 
-  const handelChange = ev => {
+
+  const handleChange  = (ev) => {
     const { name, value } = ev.target;
     const obj = { ...formData, [name]: value };
     setFormData(obj);
-
+  
     const validate = schema.validate(obj, { abortEarly: false });
     const tempErrors = { ...errors };
     delete tempErrors[name];
-
+  
     if (validate.error) {
-      const item = validate.error.details.find(e => e.context.key == name);
-
+      const item = validate.error.details.find((e) => e.context.key === name);
+  
       if (item) {
         tempErrors[name] = item.message;
       }
     }
+  
+    if (name in tempErrors && value === "") {
+      delete tempErrors[name];
+    }
 
-    setIsFormValid(!validate.error);
     setErrors(tempErrors);
-  }
+
+  console.log(tempErrors);
+const formIsValid = Object.keys(tempErrors).length === 0 &&
+Object.values(obj).every((value) => {
+  console.log(value);
+  return value !== "";
+});
+console.log(formIsValid);
+  setIsFormValid(formIsValid);
+  };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -172,7 +186,7 @@ export default function Signup() {
                           autoComplete={s.name}
                           error={Boolean(errors[s.name])}
                           helperText={errors[s.name]}
-                          onChange={handelChange}
+                          onChange={handleChange}
                           value={formData[s.name]}
                         />
                     }
@@ -184,7 +198,7 @@ export default function Signup() {
               type="submit"
               fullWidth
               variant="contained"
-              disabled={!isFormValid}
+                disabled={!isFormValid}
               sx={{ mt: 3, mb: 2 }}
             >
               Signup

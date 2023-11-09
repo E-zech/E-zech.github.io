@@ -1,9 +1,29 @@
+.card-wrapper{
+    text-align: left;
+}
+
+
 .main-title{
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    color: black;
+    
 }
 .sec-title{
+margin-top: -15px;
 
 }
+
 .cardSpan{
-    
+    display: block;
+    font-size: 1rem;
+    padding-top: 15px;
+
+   
+}
+
+.bold-spn{
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: black;
 }
