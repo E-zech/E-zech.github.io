@@ -176,7 +176,7 @@ export default function Navbar({ mode, toggleMode }) {
                        </Link>
                    ))}
                </Box>
-               {path !== '/admin' && (
+               {(path !== '/admin' && path !== '/about') && (
                    <Box sx={{ width: '20vw' }}>
                     <SearchBar  />
                </Box>

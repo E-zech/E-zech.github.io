@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { GeneralContext } from '../App';
 
 export default function UsersMenagment() {
   const [allClients, setAllClients] = useState([]);
   const [refresh, setRefresh] = useState([]);
+
+  const {  setLoader , snackbar } = useContext(GeneralContext);
 
   useEffect(() => {
     fetch(`https://api.shipap.co.il/admin/clients?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -25,7 +28,8 @@ export default function UsersMenagment() {
         });
         setAllClients(filteredData);
       });
-  }, [refresh]);
+    }, [refresh]);
+    console.log(allClients);
 
   // Define columns based on the filtered field names
   const columns = [
@@ -37,9 +41,15 @@ export default function UsersMenagment() {
     { field: 'business', headerName: 'Business', flex: 1,
     renderCell: (params) => (
       <CheckBoxIcon
-        onClick={() => handleBusiness(params.row.id)} // You need to implement handleDelete
-        style={{ cursor: 'pointer' }}
-      />
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent row selection
+            handleBusiness(params.row);
+          }}
+          style={{
+            cursor: 'pointer',
+            color: params.row.business ? 'green' : 'red',
+          }}
+        />
     ),
     },
     { field: 'delete' , headerName: 'Delete', flex: 1,
@@ -52,12 +62,25 @@ export default function UsersMenagment() {
     }
   ];
 
-  const handleBusiness = ()=> {
-
+  const handleBusiness = (client, businessValue) => {
+    setLoader(true);
+    client.business = !client.business;
+    const obj = {client};
+    
+    fetch(`https://api.shipap.co.il/admin/clients/${client.id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
+   credentials: 'include',
+   method: 'PUT',
+   headers: {'Content-type': 'application/json'},
+   body: JSON.stringify(client),
+})
+.then(() => {
+  setRefresh([{}]);
+}).finally(()=>setLoader(false))
   };
 
 
   const handleDelete = (clientID)=> {
+    setLoader(true);
     window.confirm(`are you sure you want to delte user ${clientID} ?`);
     fetch(`https://api.shipap.co.il/admin/clients/${clientID}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
    credentials: 'include',
@@ -65,7 +88,7 @@ export default function UsersMenagment() {
 })
 .then(() => {
     setRefresh([{}]);
-});
+}).finally(()=>setLoader(false))
   };
 
   return (
@@ -74,7 +97,6 @@ export default function UsersMenagment() {
         rows={allClients}
         columns={columns}
         pageSize={5}
-        checkboxSelection
       />
     </div>
   );
