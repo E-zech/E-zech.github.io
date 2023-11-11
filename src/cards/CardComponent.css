@@ -1,15 +1,24 @@
+.card{
+    transition: all 0.2s ease !important;
+}
+
+.card:hover{
+    transform: scale(1.02);
+    cursor: text;
+}
+
 .card-wrapper{
     text-align: left;
 }
 
-
-.main-title{
-    font-size: 1.5rem;
+.main-headline{
+    font-size: 1.7rem;
     margin-top: 5px;
     color: black;
-    
+   
 }
-.sec-title{
+
+.sec-headline{
 margin-top: -15px;
 
 }

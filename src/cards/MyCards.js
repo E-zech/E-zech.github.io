@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Joi from 'joi';
+import "./MyCards.css";
+import NotFound from '../components/NotFound';
  
 const inputsForCard = [
     { name: 'title', type: 'text', label: 'title', required: true },
@@ -34,7 +36,7 @@ export default function MyCards() {
     const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [refresh, setRefresh] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards , snackbar } = useContext(GeneralContext);
+    const { setAllCard, filteredCards, setFilteredCards , snackbar , loader , setLoader } = useContext(GeneralContext);
 
     const schema = Joi.object({
       title: Joi.string().required().min(2).max(30),
@@ -54,13 +56,14 @@ export default function MyCards() {
     });
   
     useEffect(() => {
+      setLoader(true);
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
         })
             .then(res => res.json())
             .then(data => {
                 setAllMyCards(data);
-            });
+            }).finally(()=> setLoader(false))
     }, [filteredCards])
 
     const toggleForm = () => {
@@ -96,7 +99,8 @@ export default function MyCards() {
     };
 
     const handleSubmit = (ev) => {
-        ev.preventDefault();
+      ev.preventDefault();
+      setLoader(true);
         const obj = {};
         const elements = ev.target.elements;
     
@@ -107,7 +111,6 @@ export default function MyCards() {
             obj[s.name] = elements[s.name].value;
           }
         });
-
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'POST',
@@ -121,7 +124,7 @@ export default function MyCards() {
             }).finally(()=>{
               toggleForm();
                snackbar('Card added');
-            });
+            }).finally(()=> setLoader(false))
     }
 
     const filteredMyCards = allMyCards.filter(card => {
@@ -130,32 +133,32 @@ export default function MyCards() {
   
     return (
         <>
-          <div>
-            <h3>ניהול הכרטיסים שלי : הוספה\צפייה\עריכה\מחיקה</h3>
-          </div>  
-          
-          <section className="container-cards">
-          <div className="grid-cards">
- {filteredMyCards.length > 0 ? (
-            filteredMyCards.map(card => (
-              <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
-            ))
-          ) : (
-            <div>Results not found</div>
-          )}
-          </div>
-         
-        </section>
-
-         <a href="#addCard">  <Button
+        <h1 className='main-title'>My Cards </h1>
+        <section className="container-cards">
+                {loader ? (
+                    <h1>Loading...</h1>
+                ) : (
+                    <div className="grid-cards">
+                        {filteredMyCards.length > 0 ? (
+                            filteredMyCards.map(card => (
+                                <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
+                            ))
+                        ) : (
+                            <NotFound />
+                        )}
+                    </div>
+                )}
+            </section>
+        <a href="#addCard" className='addCardBtn'>  <Button
             variant="contained"
             color={isFormVisible ? 'secondary' : 'primary'}
             onClick={toggleForm}
           >
             {isFormVisible ? 'Close' : 'Add Card'}
-          </Button></a>
-        
-        <br id='addCard'/>
+          </Button></a>        
+        <br />
+        <>
+        <section className='form-container' id='addCard'>
           {isFormVisible && (
             <Container component="main" maxWidth="xs"  >
               <CssBaseline />
@@ -197,7 +200,8 @@ export default function MyCards() {
               </Box>
             </Container>
           )}
-      
+        </section>
+        </>
         </>
       );
     }

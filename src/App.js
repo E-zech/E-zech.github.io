@@ -69,7 +69,7 @@ function App() {
         
         <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
-        <GeneralContext.Provider value={{ user, setUser, setLoader, snackbar, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
+        <GeneralContext.Provider value={{ user, setUser, loader, setLoader, snackbar, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
           <Navbar mode={mode} toggleMode={toggleMode} />
           <Router />
           {loader && <Loader />}

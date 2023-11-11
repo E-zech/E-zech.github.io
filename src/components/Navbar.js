@@ -98,7 +98,7 @@ export default function Navbar({ mode, toggleMode }) {
                    variant="h6"
                    noWrap
                    component="a"
-                   href="/"
+                   onClick={() => navigate('/')}
                    sx={{
                        mr: 2,
                        display: { xs: 'none', md: 'flex' },
@@ -107,6 +107,7 @@ export default function Navbar({ mode, toggleMode }) {
                        letterSpacing: '.3rem',
                        color: 'inherit',
                        textDecoration: 'none',
+                       cursor:"pointer"
                    }}
                >
                    AllCards

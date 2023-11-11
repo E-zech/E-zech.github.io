@@ -87,6 +87,12 @@ export default function CardComponent({ card, setAllCard }) {
           key={card.id}
           className='card' >
           <CardMedia
+            sx={{transition:"all 0.5s ease-in-out",
+              "&:hover": {
+                cursor: "pointer",
+                transform:"scale(1.02)"
+              }
+            }}
             component="img"
             height="194"
             image={card.imgUrl}
@@ -96,10 +102,10 @@ export default function CardComponent({ card, setAllCard }) {
           <CardContent>
             <Typography color="text.secondary">
       <div className="card-wrapper">
-        <h1 className="main-title">
+        <h1 className="main-headline">
           {card.title}
         </h1>
-        <h3 className="sec-title">
+        <h3 className="sec-headline">
           {card.subtitle}
         </h3>
         <span className="phone cardSpan">

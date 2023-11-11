@@ -2,12 +2,14 @@ import { useEffect, useState, useContext } from 'react';
 import * as React from "react";
 import { GeneralContext } from "../App";
 import CardComponent from './CardComponent';
+import "./FavCards.css";
+import NotFound from '../components/NotFound';
 
 
 export default function FavCards() {
     const [favCards, setFavCards] = useState([]);
     const [refresh, setRefresh] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards , setLoader} = useContext(GeneralContext);
+    const { setAllCard, filteredCards, setFilteredCards , loader, setLoader} = useContext(GeneralContext);
 
     useEffect(() => {
         setLoader(true);
@@ -25,7 +27,9 @@ export default function FavCards() {
             })
             .then(data => {
                 setFavCards(data);
-            }).finally(()=> setLoader(false))
+            }) .finally(() => {
+                setLoader(false);
+            });
     }, [refresh]); 
 
     const filteredFavCards = favCards.filter(card => {
@@ -35,17 +39,22 @@ export default function FavCards() {
     return (
         <>
         <header>
-        <h1>כותרת מתאימה לדף זה</h1>
-        </header>
+                <h1 className='main-title'> My Favorites Cards</h1>
+            </header>
             <section className="container-cards">
-            <div className="grid-cards">{filteredFavCards.length > 0 ? (
-                    filteredFavCards.map(card => (
-                        <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
-                    ))
+                {loader ? (
+                    <h1>Loading...</h1>
                 ) : (
-                    <div>Results not found</div>
-                )}</div>
-                
+                    <div className="grid-cards">
+                        {filteredFavCards.length > 0 ? (
+                            filteredFavCards.map(card => (
+                                <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
+                            ))
+                        ) : (
+                            <NotFound />
+                        )}
+                    </div>
+                )}
             </section>
         </>
     )

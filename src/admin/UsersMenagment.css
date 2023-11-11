@@ -1,0 +1,24 @@
+
+.description-title{
+text-align: center;
+font-size: 1rem;
+letter-spacing: 1px;
+line-height: 1.7;
+}
+
+
+.green,
+.red{
+    border-radius: 15px;
+    padding: 3px;
+    font-weight: bold;
+}
+
+
+.green{
+background-color: rgba(184, 247, 184, 0.733);
+}
+
+.red{
+background-color: rgba(250, 139, 139, 0.829);
+}

@@ -14,6 +14,29 @@
     align-items: center;
     gap: 1.2rem;
 }
+
+.main-title,
+.sec-title{
+text-align: center;
+font-family: ui-monospace;
+}
+.main-title{
+font-size: 3rem;
+}
+.sec-title{
+font-size: 1.6rem;
+}
+
+.hr{
+    margin: 0 auto;
+    width: 72vw;
+    border-radius: 50%;
+    border: 4px double #00000094;
+}
+
+.tac{
+    text-align: center;
+}
 .footer{
     padding-top: 100px;
 }
