@@ -133,7 +133,9 @@ export default function MyCards() {
   
     return (
         <>
+        <header>
         <h1 className='main-title'>My Cards </h1>
+        </header>
         <section className="container-cards">
                 {loader ? (
                     <h1>Loading...</h1>

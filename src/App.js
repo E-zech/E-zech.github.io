@@ -66,7 +66,6 @@ function App() {
     }, []);
 
     return (
-        
         <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
         <GeneralContext.Provider value={{ user, setUser, loader, setLoader, snackbar, userRoleType, setUserRoleType, filteredCards , setFilteredCards }}>
@@ -74,7 +73,7 @@ function App() {
           <Router />
           {loader && <Loader />}
           {snackbarText && <SnackBar text={snackbarText} />}
-          <Footer />
+          <Footer/>
         </GeneralContext.Provider>
       </ThemeProvider>
     );

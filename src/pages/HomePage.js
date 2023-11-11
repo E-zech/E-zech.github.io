@@ -21,10 +21,9 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="header"> 
+      <header className="header body-color"> 
       <h1 className="main-title">Queenstown Activities</h1>
       <h3 className="sec-title">Explore Queenstown's Most Thrilling and Breathtaking Adventures !</h3>
-      
       </header>
       <section className="container-cards">
                 {loader ? (

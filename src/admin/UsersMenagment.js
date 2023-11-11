@@ -100,25 +100,23 @@ const handleBusiness = (client) => {
 
   return (
     <>
+    <header>
     <h1 className="main-title">User Table Management</h1>
-
     <h3 className="sec-title">Here you can manage your clients, You can upgrade or delete them in the table below.</h3>
+    </header>
 
-
-
-    <div style={{ height: 'auto', width: '80vw', padding: '15px', margin:'0 auto' }}>
+    <section style={{ height: 'auto', width: '80vw', padding: '15px', margin:'0 auto' }}>
       <DataGrid
         rows={allClients}
         columns={columns}
         pageSize={5}
       />
-    </div>
+    </section>
     <h4 className="description-title">
     If the CheckBox color is <span className="green">green</span>, then the user is business.
     <br />
      If it is <span className="red">red</span>, the user is not business.
     </h4>
     </>
-    
   );
 }

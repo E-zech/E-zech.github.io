@@ -12,15 +12,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import { Link, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import SearchBar from './SearchBar';
 import NavbarLandingPage from '../LandingPages/NavbarLandingPage';
-
-
-
 
 export const RoleTypes = {
     none: 0,
@@ -91,7 +87,9 @@ export default function Navbar({ mode, toggleMode }) {
     )
  }
     return (
-    <AppBar position="static">
+        <AppBar
+        position="static"
+        sx={{backgroundColor: mode === 'dark' ? 'black' : '#dda147'}}>
         <Container maxWidth="xl">
            <Toolbar disableGutters>
                <Typography
@@ -105,9 +103,10 @@ export default function Navbar({ mode, toggleMode }) {
                        fontFamily: 'monospace',
                        fontWeight: 700,
                        letterSpacing: '.3rem',
-                       color: 'inherit',
+                       color: 'color',
                        textDecoration: 'none',
-                       cursor:"pointer"
+                       cursor:"pointer",
+                       userSelect: 'none'
                    }}
                >
                    AllCards
@@ -169,7 +168,7 @@ export default function Navbar({ mode, toggleMode }) {
                                    my: 2,
                                    color: 'white',
                                    display: 'block',
-                                   backgroundColor: p.route === path ? 'cornflowerblue' : ''
+                                   backgroundColor: p.route === path ? '#ffffff3d' : ''
                                }}
                            >
                                {p.title}
