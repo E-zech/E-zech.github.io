@@ -27,7 +27,6 @@ export default function EditCards() {
             .then((res) => res.json())
             .then((data) => {
                 setFormData(data);
-                console.log(data)
             }).finally(()=>{
                 setLoader(false);
             })

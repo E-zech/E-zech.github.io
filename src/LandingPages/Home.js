@@ -17,7 +17,6 @@ export default function Home() {
             .then((res) => res.json())
             .then((data) => {
                 setCard(data);
-                console.log(data);
             });
     }, []);
     return (

@@ -102,13 +102,11 @@ export default function Signup() {
 
     setErrors(tempErrors);
 
-  console.log(tempErrors);
+ 
 const formIsValid = Object.keys(tempErrors).length === 0 &&
 Object.values(obj).every((value) => {
-  console.log(value);
   return value !== "";
 });
-console.log(formIsValid);
   setIsFormValid(formIsValid);
   };
 
