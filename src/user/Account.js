@@ -4,7 +4,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,7 +15,6 @@ import { FormControlLabel } from '@mui/material';
 import { clientStructure } from './Signup';
 
 const defaultTheme = createTheme();
-
 export default function Account() {
     const navigate = useNavigate();
     const { user, setUser, setLoader } = useContext(GeneralContext);
@@ -46,13 +44,10 @@ export default function Account() {
             setLoader(false);
         });
     };
-
     return (
-        <ThemeProvider theme={defaultTheme}>
-            {
-                user ?
+    <>  
+    {user ?
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
                 <Box
                     sx={{
                         marginTop: 8,
@@ -61,9 +56,7 @@ export default function Account() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} src={user.imgUrl} alt="User Avatar"/>
                     <Typography component="h1" variant="h5">Edit Details</Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <Grid container spacing={2}>
@@ -107,6 +100,8 @@ export default function Account() {
             </Container> : ''
         }
         <br /> <br /> <br /> <br />
-        </ThemeProvider>
+    </>
+          
+     
     );
 }

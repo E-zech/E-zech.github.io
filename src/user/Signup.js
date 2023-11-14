@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,7 +16,6 @@ import { FormControlLabel } from '@mui/material';
 import Joi from 'joi';
 
 export const defaultTheme = createTheme();
-
 export const clientStructure = [
   { name: 'firstName', type: 'text', label: 'First Name', required: true, block: false },
   { name: 'middleName', type: 'text', label: 'Middle Name', required: true, block: false },
@@ -32,11 +31,9 @@ export const clientStructure = [
   { name: 'street', type: 'text', label: 'Street', required: true, block: false },
   { name: 'houseNumber', type: 'number', label: 'House Number', required: true, block: false },
   { name: 'zip', type: 'number', label: 'Zip', required: true, block: false },
-  { name: 'business', type: 'boolean', label: 'Business', block: false },
-];
+  { name: 'business', type: 'boolean', label: 'Business', block: false }];
 
 export default function Signup() {
-
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
@@ -51,13 +48,11 @@ export default function Signup() {
     city: '',
     street: '',
     houseNumber: '',
-    zip: '',
-   
-  });
+    zip: ''});
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
-  const { setLoader } = useContext(GeneralContext);
+  const { setLoader , snackbar } = useContext(GeneralContext);
 
   const schema = Joi.object({
     firstName: Joi.string().required().min(2).max(20).pattern(/^[A-Za-z]+$/).message('"First Name" should only contain letters'),
@@ -75,46 +70,35 @@ export default function Signup() {
     street: Joi.string().required(),
     houseNumber: Joi.number().required(),
     zip: Joi.number().required(),
-    business: Joi.boolean().allow(),
-  });
-
-
-  const handleChange  = (ev) => {
+    business: Joi.boolean().allow()});
+  
+const handleChange  = (ev) => {
     const { name, value } = ev.target;
     const obj = { ...formData, [name]: value };
     setFormData(obj);
-  
     const validate = schema.validate(obj, { abortEarly: false });
     const tempErrors = { ...errors };
     delete tempErrors[name];
-  
     if (validate.error) {
       const item = validate.error.details.find((e) => e.context.key === name);
-  
       if (item) {
         tempErrors[name] = item.message;
       }
     }
-  
     if (name in tempErrors && value === "") {
       delete tempErrors[name];
     }
-
-    setErrors(tempErrors);
-
- 
-const formIsValid = Object.keys(tempErrors).length === 0 &&
-Object.values(obj).every((value) => {
-  return value !== "";
-});
+setErrors(tempErrors);
+ const formIsValid = Object.keys(tempErrors).length === 0 &&
+ Object.values(obj).every((value) => {
+  return value !== "";});
   setIsFormValid(formIsValid);
-  };
+};
 
-  const handleSubmit = (ev) => {
+const handleSubmit = (ev) => {
     ev.preventDefault();
     const obj = {};
     const elements = ev.target.elements;
-
     clientStructure.forEach((s) => {
       if (s.type === 'boolean') {
         obj[s.name] = elements[s.name].checked;
@@ -122,9 +106,7 @@ Object.values(obj).every((value) => {
         obj[s.name] = elements[s.name].value;
       }
     });
-
     setLoader(true);
-
     fetch(`https://api.shipap.co.il/clients/signup?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
       credentials: 'include',
       method: 'POST',
@@ -142,29 +124,27 @@ Object.values(obj).every((value) => {
       })
       .then(() => navigate('/login'))
       .catch((err) => alert(err.message))
-      .finally(() => setLoader(false));
+      .finally(() => {
+        setLoader(false);
+        snackbar("Sign-up successful");
+      });
   };
-
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+  <>
+       <Container component="main" maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
+            alignItems: 'center',}}>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <AssignmentIndIcon />
           </Avatar>
           <Typography component="h1" variant="h5">Sign Up</Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
-              {
-                clientStructure.map(s =>
+              {clientStructure.map(s =>
                   <Grid key={s.name} item xs={12} sm={s.block ? 12 : 6}>
                     {
                       s.type === 'boolean' ?
@@ -185,22 +165,15 @@ Object.values(obj).every((value) => {
                           error={Boolean(errors[s.name])}
                           helperText={errors[s.name]}
                           onChange={handleChange}
-                          value={formData[s.name]}
-                        />
-                    }
-                  </Grid>
-                )
-              }
+                          value={formData[s.name]}/>}
+                          </Grid>)}
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
                 disabled={!isFormValid}
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Signup
-            </Button>
+              sx={{ mt: 3, mb: 2 }}> Signup</Button>
             <Grid container justifyContent="center">
               <Grid item>
                 <Link to="/login">
@@ -211,7 +184,7 @@ Object.values(obj).every((value) => {
           </Box>
         </Box>
       </Container>
-      <br /> <br /> <br /> <br />
-    </ThemeProvider>
+      <br /><br /> <br /> <br />
+  </>
   );
-            }
+}

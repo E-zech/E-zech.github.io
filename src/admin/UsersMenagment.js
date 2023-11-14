@@ -72,6 +72,9 @@ export default function UsersMenagment() {
 const handleBusiness = (client) => {
     setLoader(true);
     client.business = !client.business;
+    const snackbarMessage = `${client.firstName} is now ${
+      client.business ? "business" : "non-business"
+    } client`;
     const obj = {client};
     
     fetch(`https://api.shipap.co.il/admin/clients/${client.id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -82,6 +85,7 @@ const handleBusiness = (client) => {
     })
     .then(() => {
       setRefresh([{}]);
+      snackbar(snackbarMessage);
     }).finally(()=>setLoader(false))
   };
 

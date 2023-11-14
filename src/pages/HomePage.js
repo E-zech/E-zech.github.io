@@ -17,7 +17,7 @@ export default function HomePage() {
       .then(data => {
         setAllCard(data);
       }).finally(()=> setLoader(false))
-  }, []);
+  }, [filteredCards]);
 
   return (
     <>

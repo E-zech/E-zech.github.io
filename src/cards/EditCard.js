@@ -5,19 +5,17 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { GeneralContext } from '../App';
-import Switch from '@mui/material/Switch';
-import { FormControlLabel } from '@mui/material';
+
 
 
 export default function EditCards() {
     const [formData, setFormData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    const { setLoader, snackbar } = useContext(GeneralContext);
+    const { setLoader, snackbar, filteredCards, setFilteredCards } = useContext(GeneralContext);
 
     useEffect(() => {
         setLoader(true);
@@ -45,6 +43,13 @@ export default function EditCards() {
         })
             .then((data) => {
                 if (data.ok) {
+                    if(filteredCards.some(card => card.id === formData.id)){
+                        setFilteredCards(prevFilteredCards => {
+                            return prevFilteredCards.map(card => {
+                                return card.id === formData.id ? { ...card, ...formData } : card;
+                            });
+                        }); 
+                    }
                     snackbar('Card updated successfully');
                     navigate('/my-cards'); 
                 } else {
@@ -105,7 +110,7 @@ export default function EditCards() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 3, mb: 2, marginBottom:"100px" }}
                     >
                         Save Changes
                     </Button>

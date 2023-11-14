@@ -66,7 +66,7 @@ useEffect(() => {
 
 
   const handleChange = (value) => {
-    const lowercaseValue = value.toLowerCase();
+    const lowercaseValue = value.toLowerCase().trim();
     setSearchValue(value);
   
     const searchCards = allCards.filter(c => c.title.toLowerCase().startsWith(lowercaseValue));;

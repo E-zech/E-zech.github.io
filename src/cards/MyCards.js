@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Joi from 'joi';
 import "./MyCards.css";
 import NotFound from '../components/NotFound';
- 
+
 const inputsForCard = [
     { name: 'title', type: 'text', label: 'title', required: true },
     { name: 'description', type: 'text', label: 'description', required: true },
@@ -26,8 +26,7 @@ const inputsForCard = [
     { name: 'city', type: 'text', label: 'City', required: true },
     { name: 'street', type: 'text', label: 'Street', required: true },
     { name: 'houseNumber', type: 'number', label: 'House Number', required: true },
-    { name: 'zip', type: 'text', label: 'Zip', required: true },
-];
+    { name: 'zip', type: 'text', label: 'Zip', required: true },];
 
 export default function MyCards() {
     const [allMyCards, setAllMyCards] = useState([]);
@@ -40,11 +39,11 @@ export default function MyCards() {
 
     const schema = Joi.object({
       title: Joi.string().required().min(2).max(30),
-      description: Joi.string().required().min(6).max(200),
+      description: Joi.string().required().min(6).max(999),
       subtitle: Joi.string().required().min(2).max(30),
       phone: Joi.string().required().pattern(/^\d{10}$/).message('"Phone number" must be 10 digits long'),
       email: Joi.string().email({ tlds: false }).required(),
-      web:Joi.string().required().uri({ scheme: ['http', 'https'] }).message('"Img Url" must be a valid link (HTTP or HTTPS).') ,
+      web:Joi.string().required().uri({ scheme: ['http', 'https'] }).message('"web" must be a valid link (HTTP or HTTPS).') ,
       imgUrl: Joi.string().required().uri({ scheme: ['http', 'https'] }).message('"Img Url" must be a valid link (HTTP or HTTPS).'),
       imgAlt: Joi.string().required().min(2).max(20),
       state: Joi.string().required().min(4).max(56),
@@ -54,7 +53,7 @@ export default function MyCards() {
       houseNumber: Joi.number().required(),
       zip: Joi.number().required(),
     });
-  
+
     useEffect(() => {
       setLoader(true);
         fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -65,75 +64,67 @@ export default function MyCards() {
                 setAllMyCards(data);
             }).finally(()=> setLoader(false))
     }, [filteredCards])
-
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible); 
         if (!isFormVisible) {
           setFormData({});
           setErrors({});
-        }
-      };
-
-    const handleChange = (event) => {
+        }};
+    
+  const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({
             ...formData,
             [name]: value
         });
 
-   const validate = schema.validate({ ...formData, [name]: value }, { abortEarly: false });
-
+    const validate = schema.validate({ ...formData, [name]: value }, { abortEarly: false });
     const tempErrors = { ...errors };
     delete tempErrors[name];
 
     if (validate.error) {
       const item = validate.error.details.find(e => e.context.key == name);
-
       if (item) {
         tempErrors[name] = item.message;
-      }
-    }
-
+      }};
+      
     setIsFormValid(!validate.error);
-    setErrors(tempErrors);
-    };
-
-    const handleSubmit = (ev) => {
+    setErrors(tempErrors)};
+    
+  const handleSubmit = (ev) => {
       ev.preventDefault();
       setLoader(true);
         const obj = {};
-        const elements = ev.target.elements;
-    
+        const elements = ev.target.elements;    
         inputsForCard.forEach((s) => {
           if (s.type === 'boolean') {
             obj[s.name] = elements[s.name].checked;
           } else {
             obj[s.name] = elements[s.name].value;
-          }
-        });
-        fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
+          }});
+        
+      fetch(`https://api.shipap.co.il/business/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
-        })
+          })
             .then(res => res.json())
             .then(data => {
                 setFormData(formData);
-                setFilteredCards([...filteredMyCards, data]);
+                setFilteredCards([...filteredCards, data]);
             }).finally(()=>{
               toggleForm();
                snackbar('Card added');
-            }).finally(()=> setLoader(false))
-    }
-
-    const filteredMyCards = allMyCards.filter(card => {
+            }).finally(()=> setLoader(false))};
+    
+      const filteredMyCards = allMyCards.filter(card => {
       return filteredCards.some(filteredCard => filteredCard.id === card.id);
   });
-  
+
     return (
-        <>
-        <header>
+      <>
+       <header>
         <h1 className='main-title'>My Cards </h1>
         </header>
         <section className="container-cards">
@@ -143,7 +134,7 @@ export default function MyCards() {
                     <div className="grid-cards">
                         {filteredMyCards.length > 0 ? (
                             filteredMyCards.map(card => (
-                                <CardComponent key={card.id} card={card} setAllCard={setAllMyCards} />
+                                <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
                             ))
                         ) : (
                             <NotFound />
@@ -151,26 +142,24 @@ export default function MyCards() {
                     </div>
                 )}
             </section>
+
         <a href="#addCard" className='addCardBtn'>  <Button
             variant="contained"
             color={isFormVisible ? 'secondary' : 'primary'}
-            onClick={toggleForm}
-          >
+            onClick={toggleForm} >        
             {isFormVisible ? 'Close' : 'Add Card'}
-          </Button></a>        
-        <br />
+          </Button></a> <br />   
+
         <>
+
         <section className='form-container' id='addCard'>
           {isFormVisible && (
             <Container component="main" maxWidth="xs"  >
               <CssBaseline />
-              <Box
-                sx={{
+              <Box sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
+                  alignItems: 'center',}}>
                 <Typography component="h1" variant="h5">
                   Add Card
                 </Typography>
@@ -192,8 +181,7 @@ export default function MyCards() {
                           helperText={errors[i.name]}
                           autoComplete="off" 
                         />
-                      </Grid>
-                    ))}
+                      </Grid>))}                  
                   </Grid>
                   <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isFormValid}>
                     Add Card
@@ -202,8 +190,5 @@ export default function MyCards() {
               </Box>
             </Container>
           )}
-        </section>
-        </>
-        </>
-      );
+        </section></></>);
     }

@@ -28,11 +28,11 @@ export default function Login() {
 
     const schema = Joi.object({
         email: Joi.string()
-        // .email({ tlds: false })
-        // .required()
+        .email({ tlds: false })
+        .required()
         ,
         password: Joi.string()
-                    //  .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
+                     .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
                      .required()
                      .messages({
                         "string.pattern.base": "Password must contain at least one uppercase letter, one lowercase letter, one special character, and be between 8 and 32 characters in length.",
@@ -107,9 +107,7 @@ export default function Login() {
     };
    
     return (
-        <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
                 <Box
                     sx={{
                         marginTop: 8,
@@ -170,6 +168,6 @@ export default function Login() {
                     </Box>
                 </Box>
             </Container>
-        </ThemeProvider>
+       
     );
 }

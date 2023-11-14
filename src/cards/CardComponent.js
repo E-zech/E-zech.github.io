@@ -21,7 +21,7 @@ import './CardComponent.css';
 
 
 export default function CardComponent({ card, setAllCard }) {
-  const { user, setLoader, userRoleType , snackbar} = useContext(GeneralContext);
+  const { user, setLoader, userRoleType , snackbar, filteredCards, setFilteredCards} = useContext(GeneralContext);
   const navigate = useNavigate();
 
 
@@ -83,7 +83,7 @@ export default function CardComponent({ card, setAllCard }) {
     <>
       <section className='container-cards' >
 
-        <Card Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' }}
+        <Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' }}
           key={card.id}
           className='card' >
           <CardMedia
@@ -99,9 +99,7 @@ export default function CardComponent({ card, setAllCard }) {
             alt="Paella dish"
             onClick={()=>navigate(`/landing-page/${card.id}`)}
           />
-          <CardContent>
-            <Typography color="text.secondary">
-      <div className="card-wrapper">
+          <CardContent>  <div className="card-wrapper">
         <h1 className="main-headline">
           {card.title}
         </h1>
@@ -118,7 +116,6 @@ export default function CardComponent({ card, setAllCard }) {
             <span className="bold-spn">Card Number:</span> {card.id}
         </span>
       </div>
-            </Typography>
           </CardContent>
 
           <CardActions disableSpacing>

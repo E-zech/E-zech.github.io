@@ -30,10 +30,11 @@ export default function FavCards() {
             }) .finally(() => {
                 setLoader(false);
             });
-    }, [refresh]); 
+    }, [filteredCards]); 
 
     const filteredFavCards = favCards.filter(card => {
    return  filteredCards.some(filteredCard => filteredCard.id === card.id);
+   
     }) ;
 
     return (
@@ -48,7 +49,7 @@ export default function FavCards() {
                     <div className="grid-cards">
                         {filteredFavCards.length > 0 ? (
                             filteredFavCards.map(card => (
-                                <CardComponent key={card.id} card={card} setAllCard={setRefresh} />
+                                <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
                             ))
                         ) : (
                             <NotFound />

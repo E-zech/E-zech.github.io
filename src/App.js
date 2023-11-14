@@ -22,7 +22,7 @@ function App() {
 
     const snackbar = text => {
         setSnackbarText(text);
-        setTimeout(() => setSnackbarText(''), 1 * 1000);
+        setTimeout(() => setSnackbarText(''), 1 * 2000);
     }
 
     const lightTheme = createTheme();
@@ -73,7 +73,7 @@ function App() {
           <Router />
           {loader && <Loader />}
           {snackbarText && <SnackBar text={snackbarText} />}
-          <Footer/>
+          <Footer mode={mode} toggleMode={toggleMode}/>
         </GeneralContext.Provider>
       </ThemeProvider>
     );

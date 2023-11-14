@@ -10,7 +10,7 @@ import { GeneralContext } from '../App';
 import { RoleTypes } from './Navbar';
 import '../App.css';
 
-export default function Footer() {
+export default function Footer({ mode, toggleMode }) {
   const navigate = useNavigate();
   const path = useResolvedPath().pathname;
   const { id } = useParams();
@@ -31,6 +31,8 @@ export default function Footer() {
       setValue(1);
     } else if (path === '/my-cards') {
       setValue(2);
+    } else {
+      setValue(-1); 
     }
   }, [path]);
 
@@ -48,7 +50,7 @@ export default function Footer() {
           position:'fixed',
         }}>
           <BottomNavigation
-            sx={{ backgroundColor:'#ffefd7' }}
+            sx={{ backgroundColor: mode === 'dark' ? 'black' : '#ffefd7' }} 
             showLabels
             value={value}
             onChange={(event, newValue) => {
@@ -56,13 +58,13 @@ export default function Footer() {
             }}
           >
             <BottomNavigationAction label="About" icon={<InfoIcon />} onClick={()=> navigate('/about')}
-              sx={path === '/about' ? activeColor : ''}
+              sx={path === '/about' ? activeColor : {}}
             />
             {user &&
-              <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} onClick={()=> navigate('/favorite')} sx={path === '/favorite' ? activeColor : ''} />
+              <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} onClick={()=> navigate('/favorite')} sx={path === '/favorite' ? activeColor : {}} />
             }
             {(userRoleType === RoleTypes.business || userRoleType === RoleTypes.admin) &&
-              <BottomNavigationAction label="My Cards" icon={<AccountCircleIcon />} onClick={()=> navigate('/my-cards')} sx={path === '/my-cards' ? activeColor : ''} />
+              <BottomNavigationAction label="My Cards" icon={<AccountCircleIcon />} onClick={()=> navigate('/my-cards')} sx={path === '/my-cards' ? activeColor : {}} />
             }
           </BottomNavigation>
         </Box>
