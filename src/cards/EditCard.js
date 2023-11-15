@@ -5,11 +5,9 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { GeneralContext } from '../App';
-
-
 
 export default function EditCards() {
     const [formData, setFormData] = useState({});
@@ -33,8 +31,7 @@ export default function EditCards() {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        setLoader(true);
-    
+        setLoader(true);  
         fetch(`https://api.shipap.co.il/business/cards/${id}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
             credentials: 'include',
             method: 'PUT',
@@ -62,7 +59,7 @@ export default function EditCards() {
     return (
         <>
         <header>
-            <h1>כותרת מתאימה לדף זה </h1>
+            <h1 className='main-title'>Edit Card</h1>
         </header>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -74,10 +71,6 @@ export default function EditCards() {
                     alignItems: 'center',
                 }}
             >
-
-                <Typography component="h1" variant="h5">
-                    Edit Card
-                </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <Grid container spacing={2}>
                         {
@@ -101,7 +94,6 @@ export default function EditCards() {
                                             }
                                         />)
                                     }
-
                                 </Grid>
                             ))
                         }

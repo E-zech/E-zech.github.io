@@ -2,14 +2,11 @@ import { useEffect, useState, useContext } from 'react';
 import * as React from "react";
 import { GeneralContext } from "../App";
 import CardComponent from './CardComponent';
-import "./FavCards.css";
-import NotFound from '../components/NotFound';
-
+import ResultNotFound from '../components/ResultNotFound.js';
 
 export default function FavCards() {
     const [favCards, setFavCards] = useState([]);
-    const [refresh, setRefresh] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards , loader, setLoader} = useContext(GeneralContext);
+    const { filteredCards, setFilteredCards , loader, setLoader} = useContext(GeneralContext);
 
     useEffect(() => {
         setLoader(true);
@@ -52,7 +49,7 @@ export default function FavCards() {
                                 <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
                             ))
                         ) : (
-                            <NotFound />
+                            <ResultNotFound />
                         )}
                     </div>
                 )}

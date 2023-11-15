@@ -23,7 +23,6 @@ export default function Footer({ mode, toggleMode }) {
     }
   };
 
-
   useEffect(() => {
     if (path === '/about') {
       setValue(0);

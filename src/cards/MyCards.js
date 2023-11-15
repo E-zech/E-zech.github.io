@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Joi from 'joi';
 import "./MyCards.css";
-import NotFound from '../components/NotFound';
+import ResultNotFound from '../components/ResultNotFound.js';
 
 const inputsForCard = [
     { name: 'title', type: 'text', label: 'title', required: true },
@@ -34,8 +34,7 @@ export default function MyCards() {
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const [isFormVisible, setIsFormVisible] = useState(false);
-    const [refresh, setRefresh] = useState([]);
-    const { setAllCard, filteredCards, setFilteredCards , snackbar , loader , setLoader } = useContext(GeneralContext);
+    const { filteredCards, setFilteredCards , snackbar , loader , setLoader } = useContext(GeneralContext);
 
     const schema = Joi.object({
       title: Joi.string().required().min(2).max(30),
@@ -137,7 +136,7 @@ export default function MyCards() {
                                 <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
                             ))
                         ) : (
-                            <NotFound />
+                            <ResultNotFound />
                         )}
                     </div>
                 )}
@@ -149,9 +148,7 @@ export default function MyCards() {
             onClick={toggleForm} >        
             {isFormVisible ? 'Close' : 'Add Card'}
           </Button></a> <br />   
-
         <>
-
         <section className='form-container' id='addCard'>
           {isFormVisible && (
             <Container component="main" maxWidth="xs"  >

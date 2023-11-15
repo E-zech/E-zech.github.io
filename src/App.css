@@ -1,4 +1,8 @@
-
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 .container-cards{
     display: flex;
     flex-wrap: wrap;
@@ -20,12 +24,15 @@
 .sec-title{
 text-align: center;
 font-family: ui-monospace;
+
 }
 .main-title{
 font-size: 3rem;
+padding: 30px 0px;
 }
 .sec-title{
 font-size: 1.6rem;
+padding: 15px 0px;
 }
 
 .hr{
@@ -39,7 +46,7 @@ font-size: 1.6rem;
     text-align: center;
 }
 .footer{
-    padding-top: 100px;
+   
 }
 
 

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import CardComponent from "../cards/CardComponent";
 import { GeneralContext } from "../App";
 import './HomePage.css';
-import NotFound from "../components/NotFound";
+import ResultNotFound from "../components/ResultNotFound.js";
 
 export default function HomePage() {
   const [allCards, setAllCard] = useState([]);
@@ -18,10 +18,9 @@ export default function HomePage() {
         setAllCard(data);
       }).finally(()=> setLoader(false))
   }, [filteredCards]);
-
   return (
-    <>
-      <header className="header body-color"> 
+    <><section className="body-color">
+      <header className="header"> 
       <h1 className="main-title">Queenstown Activities</h1>
       <h3 className="sec-title">Explore Queenstown's Most Thrilling and Breathtaking Adventures !</h3>
       </header>
@@ -35,10 +34,11 @@ export default function HomePage() {
                                 <CardComponent key={card.id} card={card} setAllCard={setFilteredCards} />
                             ))
                         ) : (
-                            <NotFound />
+                            <ResultNotFound />
                         )}
                     </div>
                 )}
+            </section>
             </section>
     </>
   );

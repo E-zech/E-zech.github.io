@@ -13,22 +13,18 @@
 
 .main-headline{
     font-size: 1.7rem;
-    margin-top: 5px;
+   padding: 15px 0px;
     color: black;
-   
 }
 
-.sec-headline{
-margin-top: -15px;
-
+.sec-headline{ 
+padding: 5px 0px;
 }
 
 .cardSpan{
     display: block;
     font-size: 1rem;
-    padding-top: 15px;
-
-   
+    padding-top: 15px;  
 }
 
 .bold-spn{

@@ -11,7 +11,7 @@ import EditCards from './cards/EditCard';
 import HomePage from './pages/HomePage';
 import Home from './LandingPages/Home';
 import filterdCards from './components/SearchBar';
-import AboutUs from './LandingPages/AboutUs';
+
 
 export default function Router() {
     return (
@@ -26,7 +26,6 @@ export default function Router() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/account" element={<Account />} />
             <Route path="/landing-page/:id" element={<Home/>} />
-            <Route path="/landing-page-about-us" element={<AboutUs />} />
         </Routes>
     )
 }

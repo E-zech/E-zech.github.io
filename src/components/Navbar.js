@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import {AppBar, Box, Toolbar, IconButton, Typography,Menu, Container, Avatar, Button, Tooltip, MenuItem} from '@mui/material';
-import { Link, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { Link, useNavigate, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import SearchBar from './SearchBar';
 import NavbarLandingPage from '../LandingPages/NavbarLandingPage';
@@ -32,7 +32,7 @@ export default function Navbar({ mode, toggleMode }) {
     const { user, setUser, setLoader, userRoleType, setUserRoleType, snackbar } = useContext(GeneralContext);
     const navigate = useNavigate();
     const path = useResolvedPath().pathname;
-    const { id } = useParams();
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget)};
 

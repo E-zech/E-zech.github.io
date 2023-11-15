@@ -1,12 +1,9 @@
-
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,8 +11,6 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useContext } from "react";
 import { GeneralContext } from "../App";
 import { RoleTypes } from "../components/Navbar";
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './CardComponent.css';
 
