@@ -92,7 +92,11 @@ const handleBusiness = (client) => {
 
   const handleDelete = (clientID)=> {
     setLoader(true);
-    window.confirm(`are you sure you want to delte user ${clientID} ?`);
+    const confirm= window.confirm(`are you sure you want to delte user ${clientID} ?`);
+    if(!confirm){
+      setLoader(false);
+      return;
+    }
     fetch(`https://api.shipap.co.il/admin/clients/${clientID}?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
    credentials: 'include',
    method: 'DELETE',

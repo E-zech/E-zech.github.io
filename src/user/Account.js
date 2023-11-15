@@ -1,23 +1,45 @@
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { GeneralContext } from '../App';
 import Switch from '@mui/material/Switch';
 import { FormControlLabel } from '@mui/material';
-import { clientStructure } from './Signup';
+import {  clientStructure } from '../components/FormValidation';
+
 
 const defaultTheme = createTheme();
 export default function Account() {
     const navigate = useNavigate();
-    const { user, setUser, setLoader } = useContext(GeneralContext);
+    const { user, setUser, setLoader, snackbar } = useContext(GeneralContext);
+
+
+useEffect(()=>{
+    fetch(`https://api.shipap.co.il/clients/login`, {
+        credentials: 'include',
+     })
+     .then(res => {
+         if (res.ok) {
+             return res.json();
+         } else {
+             return res.text().then(x => {
+                 throw new Error(x);
+             });
+         }
+     })
+     .then(data => {
+         console.log(data);
+     })
+     .catch(err => {
+         console.log(err.message);
+     });
+},[])
 
     const handleSubmit = ev => {
         ev.preventDefault();
@@ -42,7 +64,10 @@ export default function Account() {
         })
         .then(() => {
             setLoader(false);
-        });
+            snackbar("Update successful");
+        }).finally(()=> {
+            navigate('/');
+        })
     };
     return (
     <>  
