@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import SearchBar from './components/SearchBar';
 import SnackBar from './components/Snackbar';
+import './components/ScrollBar.css';
 
 
 export const GeneralContext = createContext();
@@ -25,7 +26,14 @@ function App() {
         setTimeout(() => setSnackbarText(''), 1 * 2000);
     }
 
-    const lightTheme = createTheme();
+    const lightTheme = createTheme({
+        palette: {
+          mode: 'light',
+          background: {
+            default: '#ffefd78a', 
+          },
+        },
+      });
     const darkTheme = createTheme({
     palette: {
     mode: 'dark',

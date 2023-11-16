@@ -38,6 +38,7 @@ export default function FavCards() {
         <>
         <header>
                 <h1 className='main-title'> My Favorites Cards</h1>
+                <br />
             </header>
             <section className="container-cards">
                 {loader ? (

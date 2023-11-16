@@ -19,7 +19,7 @@ export default function HomePage() {
       }).finally(()=> setLoader(false))
   }, [filteredCards]);
   return (
-    <><section className="body-color">
+    <><section>
       <header className="header"> 
       <h1 className="main-title">Queenstown Activities</h1>
       <h3 className="sec-title">Explore Queenstown's Most Thrilling and Breathtaking Adventures !</h3>

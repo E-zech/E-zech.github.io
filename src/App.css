@@ -1,5 +1,5 @@
 *{
-    padding: 0;
+    padding: 20px 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -24,15 +24,16 @@
 .sec-title{
 text-align: center;
 font-family: ui-monospace;
-
 }
+
 .main-title{
 font-size: 3rem;
-padding: 30px 0px;
+padding: 40px 0px 7px 0px;
 }
+
 .sec-title{
 font-size: 1.6rem;
-padding: 15px 0px;
+padding: 20px 0px;
 }
 
 .hr{
@@ -46,13 +47,21 @@ padding: 15px 0px;
     text-align: center;
 }
 .footer{
-   
+   padding-top: 100px;
 }
 
 
 @media screen and (max-width:1000px) {
     .grid-cards{
         grid-template-columns: repeat(2, auto);
+    }
+    .main-title{
+        font-size: 2.5rem ;
+        padding: 30px 0px 5px 0px;
+    }
+    .sec-title{
+        font-size: 1.3rem ;
+        padding: 20px 10px;
     }
 }
 
@@ -61,4 +70,15 @@ padding: 15px 0px;
         grid-template-columns: repeat(1, auto);
     }
     
+}
+
+@media screen and (max-width:500px) {
+    .main-title{
+        font-size: 2.2rem ;
+        padding: 30px 10px 5px 10px;
+    }
+    .sec-title{
+        font-size: 1.2rem ;
+        padding: 14px 30px;
+    }   
 }

@@ -124,7 +124,8 @@ export default function MyCards() {
     return (
       <>
        <header>
-        <h1 className='main-title'>My Cards </h1>
+        <h1 className='main-title leftFix'>My Cards </h1>
+        <br />
         </header>
         <section className="container-cards">
                 {loader ? (
