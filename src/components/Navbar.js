@@ -83,7 +83,7 @@ return (
                     textDecoration: 'none',
                     cursor:"pointer",
                     userSelect: 'none'}}>
-                <HomeIcon/>&nbsp;AllCards
+                <HomeIcon/>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
@@ -128,7 +128,7 @@ return (
                     letterSpacing: '.3rem',
                     color: 'inherit',
                     textDecoration: 'none',}}>     
-                <HomeIcon/>&nbsp;All Cards
+                <HomeIcon/>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
@@ -175,7 +175,10 @@ return (
                         horizontal: 'right'}}
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}>
-                        <Link to="/account" style={{ textDecoration: 'none', color: 'black' }}>
+                        <Link to="/account" style={{ 
+                            textDecoration: 'none',
+                             color: mode === 'dark' ? 'white' : 'black'
+                            }}>
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center">{user.fullName}</Typography>
                             </MenuItem>
