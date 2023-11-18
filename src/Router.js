@@ -9,8 +9,8 @@ import UsersMenagment from './admin/UsersMenagment';
 import About from './pages/About';
 import EditCards from './cards/EditCard';
 import HomePage from './pages/HomePage';
-import Home from './LandingPages/Home';
 import filterdCards from './components/SearchBar';
+import LandingPage from './LandingPages/LandingPage';
 
 
 export default function Router() {
@@ -25,7 +25,7 @@ export default function Router() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/landing-page/:id" element={<Home/>} />
+            <Route path="/landing-page/:id" element={<LandingPage/>} />
         </Routes>
     )
 }

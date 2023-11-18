@@ -1,18 +1,11 @@
 /* class that start with LP mean Landing Page*/
-*{
-    box-sizing: border-box;
-    padding: 0;    
-}
-
 html {
     scroll-behavior: smooth;
 }
-
 .LP-body-container{
-    background-color:#fff4d6d6;
-    margin-top: -122px;
+    background: rgb(255,244,214);
+background: linear-gradient(0deg, rgba(255,244,214,1) 99%, rgba(183,243,255,1) 100%);
 }
-
 
 .LP-hr {
     margin: 0 auto;
@@ -31,13 +24,12 @@ html {
 .LP-main-title{
 padding-top: 67px;
 font-size: 3.8rem;
+margin-top: -42px;
 }
-
 
 .LP-sub-title{
 font-size:1.5rem;
-margin-top: -20px;
-padding: 0 10px;
+padding: 12px 10px;
 }
 
 .LP-description {
@@ -97,10 +89,9 @@ padding: 0 10px;
     font-family: ui-monospace;
   }
   .LP-footer-secHeadLine{
-    margin-top: -10px;
     font-size: 1.8rem;
     font-family: ui-monospace;
-    padding: 0 5px;
+    padding-top: 23px;
   }
   
   .LP-footer-contactWrapeer{
@@ -108,37 +99,12 @@ padding: 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 0 ;
+    padding: 37px 0 ;
     gap: 50px;
     
   }
-  
   .LP-footer-txt{
     font-size:1rem;
+    padding-top: 14px;
   }
 
-
-
-
-@media screen and (max-width: 1200px) {
-    .LP-footer-contactWrapeer{
-        display: block;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .LP-footer-contactWrapeer{
-        display: block;
-        padding: 1px 70px;
-        text-align: left;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .LP-main-title{font-size: 3rem;}
-
-    .LP-up-button{
-        right: 2px;
-        bottom: 2px;
-    }
-}

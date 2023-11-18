@@ -3,7 +3,6 @@ import {AppBar, Box, Toolbar, IconButton, Typography,Menu, Container, Avatar, Bu
 import { Link, useNavigate, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
 import SearchBar from './SearchBar';
-import NavbarLandingPage from '../LandingPages/NavbarLandingPage';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
@@ -61,7 +60,8 @@ export default function Navbar({ mode, toggleMode }) {
     }
  
  if (/^\/landing-page\/\d+$/.test(path)) {
-    return (<NavbarLandingPage/>)}
+    return null;
+}
         
 return (
     <AppBar
