@@ -146,7 +146,11 @@ export default function MyCards() {
         <a href="#addCard" className='addCardBtn'>  <Button
             variant="contained"
             color={isFormVisible ? 'secondary' : 'primary'}
-            onClick={toggleForm} >        
+            onClick={toggleForm} 
+            sx={{ backgroundColor: 'indigo' ,
+            '&:hover':{
+             backgroundColor:'#7e30b7' 
+            }}}>        
             {isFormVisible ? 'Close' : 'Add Card'}
           </Button></a> <br />   
         <>

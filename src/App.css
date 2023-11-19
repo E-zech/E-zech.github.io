@@ -8,9 +8,11 @@
 .sec-title{
 text-align: center;
 font-family: ui-monospace;
+color: black;
 }
 
 .main-title{
+    color: indigo;
 font-size: 3rem;
 padding: 40px 0px 7px 0px;
 }
@@ -33,10 +35,6 @@ padding: 20px 0px;
     width: 72vw;
     border-radius: 50%;
     border: 4px double #00000094;
-}
-
-.signUp-span{
-   
 }
 
 .footer{

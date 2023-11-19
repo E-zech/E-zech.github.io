@@ -48,6 +48,7 @@
 }
 
 @media screen and (max-width: 450px) {
+    .LP-main-title{font-size: 2rem;}
     .LP-navbar-BtnImg-wrapper {
         gap: 6px;
     }
@@ -64,6 +65,11 @@
         font-size: 12px;
         padding-right: 0px;
     }
+
+    .LP-description{
+        padding: 0px;
+    }
+
     .LP-up-button{
         right: 2px;
         bottom: 2px;

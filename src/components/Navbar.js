@@ -47,7 +47,7 @@ export default function Navbar({ mode, toggleMode }) {
 
 
         useEffect(()=>{
-            const disableSearchBar = ['/admin', '/about', '/login', '/signup'];
+            const disableSearchBar = ['/admin', '/about', '/login', '/signup', '/account'];
             setIsSearchBar(!disableSearchBar.includes(path))
         },[path]);
 

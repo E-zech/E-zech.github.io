@@ -32,6 +32,7 @@ function App() {
           },
         },
       });
+
     const darkTheme = createTheme({
     palette: {
     mode: 'dark',
@@ -49,7 +50,8 @@ function App() {
         .then(res => {
             if (res.ok) {
                 return res.json();
-            } else {
+            } 
+            else {
                 return res.text().then(x => {
                     throw new Error(x);
                 });

@@ -3,7 +3,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
@@ -13,7 +12,7 @@ export default function EditCards() {
     const [formData, setFormData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    const { setLoader, snackbar, filteredCards, setFilteredCards } = useContext(GeneralContext);
+    const { setLoader, snackbar, filteredCards, setFilteredCards,indigoButtonStyle } = useContext(GeneralContext);
 
     useEffect(() => {
         setLoader(true);
@@ -102,7 +101,12 @@ export default function EditCards() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2, marginBottom:"100px" }}
+                        sx={{ mt: 3, mb: 2, marginBottom:"100px" ,
+                        backgroundColor: 'indigo',
+                        '&:hover':{
+                            backgroundColor:'#7e30b7' 
+                           }
+                    }}
                     >
                         Save Changes
                     </Button>

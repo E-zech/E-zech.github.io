@@ -32,14 +32,18 @@ font-size:1.5rem;
 padding: 12px 10px;
 }
 
-.LP-description {
-    padding: 15px;
-    width: 70vw;
-    margin: 0 auto;
+.LP-description{
+padding: 15px;
+width: 70vw;
+margin: 0 auto;
+text-align: left;
+line-height: 1.7;
+}
+
+.LP-description-txt {
     font-size: 1.2rem;
-    text-align: justify;
-    line-height: 1.7;
     font-weight: bold;
+    padding: 20px 0;
 }
 
 .LP-photos-container{
@@ -75,36 +79,4 @@ padding: 12px 10px;
     bottom: 20px;
     font-size: 2rem;
 }
-
-.LP-footer{
-    width: 100%;
-    height: auto;
-    background: rgb(159,227,240);
-    background: linear-gradient(0deg, #b7f0fbbf 42%, #fff4d6d6 83%);
-    text-align: center;
-  }
-  .LP-footer-headline {
-    padding-top: 70px;
-    font-size: 2.7rem;
-    font-family: ui-monospace;
-  }
-  .LP-footer-secHeadLine{
-    font-size: 1.8rem;
-    font-family: ui-monospace;
-    padding-top: 23px;
-  }
-  
-  .LP-footer-contactWrapeer{
-    width: 98.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 37px 0 ;
-    gap: 50px;
-    
-  }
-  .LP-footer-txt{
-    font-size:1rem;
-    padding-top: 14px;
-  }
 

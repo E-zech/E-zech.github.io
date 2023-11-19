@@ -151,7 +151,10 @@ export default function Login() {
                             fullWidth
                             variant="contained"
                             disabled={!isFormValid}
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ mt: 3, mb: 2 , backgroundColor: 'indigo',
+                            '&:hover':{
+                                backgroundColor:'#7e30b7' 
+                               }}}
                         >
                             Login
                         </Button>

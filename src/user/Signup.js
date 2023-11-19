@@ -17,25 +17,26 @@ import { schema, clientStructure } from '../components/FormValidation';
 export const defaultTheme = createTheme();
 
 export default function Signup() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    password: '',
-    imgUrl: '',
-    imgAlt: '',
-    state: '',
-    country: '',
-    city: '',
-    street: '',
-    houseNumber: '',
-    zip: ''});
-  const [errors, setErrors] = useState({});
-  const [isFormValid, setIsFormValid] = useState(false);
-  const navigate = useNavigate();
-  const { setLoader , snackbar } = useContext(GeneralContext);
+const [formData, setFormData] = useState({
+  firstName: '',
+  middleName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  password: '',
+  imgUrl: '',
+  imgAlt: '',
+  state: '',
+  country: '',
+  city: '',
+  street: '',
+  houseNumber: '',
+  zip: ''});
+
+const [errors, setErrors] = useState({});
+const [isFormValid, setIsFormValid] = useState(false);
+const navigate = useNavigate();
+const { setLoader , snackbar } = useContext(GeneralContext);
   
 const handleChange  = (ev) => {
     const { name, value } = ev.target;
@@ -62,6 +63,7 @@ setErrors(tempErrors);
 
 const handleSubmit = (ev) => {
     ev.preventDefault();
+
     const obj = {};
     const elements = ev.target.elements;
     clientStructure.forEach((s) => {
@@ -71,7 +73,9 @@ const handleSubmit = (ev) => {
         obj[s.name] = elements[s.name].value;
       }
     });
+
     setLoader(true);
+
     fetch(`https://api.shipap.co.il/clients/signup?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
       credentials: 'include',
       method: 'POST',
@@ -83,73 +87,85 @@ const handleSubmit = (ev) => {
           return res.json();
         } else {
           return res.text().then((x) => {
+            snackbar(x);
             throw new Error(x);
           });
         }
       })
-      .then(() => navigate('/login'))
-      .catch((err) => alert(err.message))
-      .finally(() => {
-        setLoader(false);
+      .then(() =>{
+         navigate('/login');
         snackbar("Sign-up successful");
-      });
+      })
+      .catch((err) => snackbar(err.message))
+      .finally(() => setLoader(false)); 
   };
-  return (
-  <>
-       <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',}}>
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <AssignmentIndIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">Sign Up</Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <Grid container spacing={2}>
-              {clientStructure.map(s =>
-                  <Grid key={s.name} item xs={12} sm={s.block ? 12 : 6}>
-                    {
-                      s.type === 'boolean' ?
-                        <FormControlLabel
-                          control={<Switch color="primary" name={s.name} />}
-                          label={s.label}
-                          labelPlacement="start"
-                        /> :
-                        <TextField
-                          margin="normal"
-                          required={s.required}
-                          fullWidth
-                          id={s.name}
-                          label={s.label}
-                          name={s.name}
-                          type={s.type}
-                          autoComplete={s.name}
-                          error={Boolean(errors[s.name])}
-                          helperText={errors[s.name]}
-                          onChange={handleChange}
-                          value={formData[s.name]}/>}
-                          </Grid>)}
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-                disabled={!isFormValid}
-              sx={{ mt: 3, mb: 2 }}> Signup</Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link to="/login">
-                  Already have an account? Login
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-      <br /><br /> <br /> <br />
-  </>
-  );
+
+return (
+<>
+<Container component="main" maxWidth="xs">
+  <Box
+    sx={{
+    marginTop: 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',}}>
+
+    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+    <AssignmentIndIcon />
+    </Avatar>
+
+    <Typography component="h1" variant="h5">Sign Up</Typography>
+
+    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
+      <Grid container spacing={2}>
+      {clientStructure.map(s =>
+        <Grid key={s.name} item xs={12} sm={s.block ? 12 : 6}>
+          {s.type === 'boolean' ?
+            <FormControlLabel
+            control={<Switch color="primary" name={s.name} />}
+            label={s.label}
+            labelPlacement="start"
+            /> :
+            <TextField
+            margin="normal"
+            required={s.required}
+            fullWidth
+            id={s.name}
+            label={s.label}
+            name={s.name}
+            type={s.type}
+            autoComplete={s.name}
+            error={Boolean(errors[s.name])}
+            helperText={errors[s.name]}
+            onChange={handleChange}
+            value={formData[s.name]}/>}
+        </Grid>)}
+      </Grid>
+
+    <Button
+      type="submit"
+      fullWidth
+      variant="contained"
+      disabled={!isFormValid}
+      sx={{ mt: 3, mb: 2, backgroundColor: 'indigo',
+      '&:hover':{
+      backgroundColor:'#7e30b7' 
+      }}}>
+      Signup
+    </Button>
+
+    <Grid container justifyContent="center">
+      <Grid item>
+        <Link to="/login">
+          Already have an account? Login
+        </Link>
+      </Grid>
+    </Grid>
+
+    </Box>
+  </Box>
+</Container>
+</>
+);
 }

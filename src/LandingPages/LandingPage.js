@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import './LandingPage.css';
 import './LPNabvbar.css';
 import './LandingPageMediaQ.css';
+import './LPFooter.css';
 import LPNavbar from "./LPNavbar";
 /* classes that start with LP means Landing Page*/
 
@@ -31,7 +32,7 @@ return (
 <>
 <LPNavbar card={card}/>
 <section className="LP-body-container">
-    <header id="about-us">
+    <header>
         <h1 className="LP-main-title ">{card.title}</h1>
         <h2 className="LP-sub-title ">{card.subtitle}</h2>
     </header>
@@ -42,11 +43,13 @@ return (
     </div>
     <br /><br />
     
-    <div>
-        <h3 className="LP-description" id="about-us">{card.description}</h3>
+    <div className="LP-description">
+        <h1 className="LP-description-headline">A little bit about {card.title}</h1>
+        <h3 className="LP-description-txt">{card.description}</h3>
+        <h4 className="LP-description-bottomline">For more information please contact us ⬇️</h4>
     </div>    
     <br /><br />
-    <hr className="LP-hr" id="contact" />
+    <hr className="LP-hr"/>
 
     <footer className="LP-footer">
       <h1 className="LP-footer-headline">Contact Us</h1>

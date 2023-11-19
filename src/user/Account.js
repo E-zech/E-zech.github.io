@@ -37,7 +37,7 @@ useEffect(()=>{
          console.log(data);
      })
      .catch(err => {
-    
+    console.log(err)
      });
 },[])
 
@@ -116,7 +116,10 @@ useEffect(()=>{
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ mt: 3, mb: 2,  backgroundColor: 'indigo',
+                            '&:hover':{
+                                backgroundColor:'#7e30b7' 
+                               } }}
                         >
                             Save
                         </Button>
