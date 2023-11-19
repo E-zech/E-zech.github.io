@@ -41,7 +41,7 @@ gap: 15px;
     width: 128px;
     padding: 7px 7px;
     border-radius: 21px;
-    color: #dddddd;
+    color: wheat;
     border-color: #afffff;
     font-weight: bold;
 }
@@ -65,5 +65,13 @@ transition: all 0.1s ease-in-out;
     align-self: center;
     padding-right: 28px;
     font-size:2rem;
-    color: white;
+    color: wheat;
 }
+
+/* element.style {
+    color: black;
+    font-size: 3.5rem;
+    box-shadow: 0px 2px 11px 4px;
+    background-color: antiquewhite;
+    border-radius: 22px;
+} */

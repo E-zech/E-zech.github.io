@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {AppBar, Box, Toolbar, IconButton, Typography,Menu, Container, Avatar, Button, Tooltip, MenuItem} from '@mui/material';
 import { Link, useNavigate, useResolvedPath } from 'react-router-dom';
 import { GeneralContext } from '../App';
@@ -28,6 +28,7 @@ const pages = [
 export default function Navbar({ mode, toggleMode }) {
      const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const [isSearchBar, setIsSearchBar] = useState(false);
     const { user, setUser, setLoader, userRoleType, setUserRoleType, snackbar } = useContext(GeneralContext);
     const navigate = useNavigate();
     const path = useResolvedPath().pathname;
@@ -43,6 +44,12 @@ export default function Navbar({ mode, toggleMode }) {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null)};
+
+
+        useEffect(()=>{
+            const disableSearchBar = ['/admin', '/about', '/login', '/signup'];
+            setIsSearchBar(!disableSearchBar.includes(path))
+        },[path]);
 
     const logout = () => {
         setLoader(true);
@@ -62,7 +69,7 @@ export default function Navbar({ mode, toggleMode }) {
  if (/^\/landing-page\/\d+$/.test(path)) {
     return null;
 }
-        
+     
 return (
     <AppBar
         position="static"
@@ -145,10 +152,10 @@ return (
                     </Link>))} 
             </Box>
 
-            {(path !== '/admin' && path !== '/about') && (
+            { isSearchBar && 
             <Box sx={{ width: '20vw' }}>
                 <SearchBar  />
-            </Box>)}
+            </Box>}
 
             <Box sx={{}} >
                 <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">

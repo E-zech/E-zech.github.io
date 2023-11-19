@@ -77,7 +77,6 @@ export default function CardComponent({ card, setAllCard }) {
 
     <>
       <section className='container-cards' >
-
         <Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' }}
           key={card.id}
           className='card' >

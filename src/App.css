@@ -4,23 +4,6 @@
     box-sizing: border-box;
 }
 
-.container-cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-} 
-
-.grid-cards{
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-}
-
 .main-title,
 .sec-title{
 text-align: center;
@@ -37,6 +20,14 @@ font-size: 1.6rem;
 padding: 20px 0px;
 }
 
+.grid-cards{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+
 .hr{
     margin: 0 auto;
     width: 72vw;
@@ -44,9 +35,10 @@ padding: 20px 0px;
     border: 4px double #00000094;
 }
 
-.tac{
-    text-align: center;
+.signUp-span{
+   
 }
+
 .footer{
    padding-top: 100px;
 }

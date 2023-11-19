@@ -6,10 +6,8 @@ import Loader from './components/Loader';
 import Footer from './components/Footer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import SearchBar from './components/SearchBar';
 import SnackBar from './components/Snackbar';
 import './components/ScrollBar.css';
-
 
 export const GeneralContext = createContext();
 
