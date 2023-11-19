@@ -185,7 +185,11 @@ export default function MyCards() {
                         />
                       </Grid>))}                  
                   </Grid>
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isFormValid}>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2,
+                      backgroundColor: 'indigo',
+                      '&:hover':{
+                          backgroundColor:'#7e30b7' 
+                         } }} disabled={!isFormValid}>
                     Add Card
                   </Button>
                 </Box>

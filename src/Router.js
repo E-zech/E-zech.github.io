@@ -10,7 +10,6 @@ import EditCards from './cards/EditCard';
 import HomePage from './pages/HomePage';
 import LandingPage from './LandingPages/LandingPage';
 
-
 export default function Router() {
     return (
         <Routes>
