@@ -80,9 +80,9 @@ export default function CardComponent({ card, setAllCard }) {
         <Card sx={{
            maxWidth: 345,
             backgroundColor:'#f3ead985' ,
-            boxShadow: card.favorite ? '0px 0px 6px 0.5px #ff7171' : '0px 0px 6px 0.5px #b88138',
-            '&:hover': {
-              boxShadow: card.favorite ? '0px 0px 6px 1px red' : '0px 0px 6px 1px #fba32d',
+            boxShadow: '0px 0px 6px 0.5px #b88138;',
+            '&:hover':{
+              boxShadow: '0px 0px 6px 1px #fba32d',
             }
           }}
           key={card.id}
