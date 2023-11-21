@@ -39,7 +39,7 @@ export default function UsersMenagment() {
       {params.row.business ? (
         <CheckBoxIcon
           onClick={(e) => {
-            e.stopPropagation(); // prevent row selection
+            e.stopPropagation();
             handleBusiness(params.row);
           }}
           style={{

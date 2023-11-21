@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { GeneralContext } from '../App';
@@ -13,8 +12,6 @@ import Switch from '@mui/material/Switch';
 import { FormControlLabel } from '@mui/material';
 import {  clientStructure } from '../components/FormValidation';
 
-
-const defaultTheme = createTheme();
 export default function Account() {
     const navigate = useNavigate();
     const { user, setUser, setLoader, snackbar } = useContext(GeneralContext);
@@ -34,10 +31,8 @@ useEffect(()=>{
          }
      })
      .then(data => {
-         console.log(data);
      })
      .catch(err => {
-    console.log(err)
      });
 },[])
 

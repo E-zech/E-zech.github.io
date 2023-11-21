@@ -1,15 +1,24 @@
+admin user - 
+email: nemo557@gmail.com
+password: Ez123123!
+
+busines user -
+email: Harry@tours.com
+password: Htours123!
+
+busines user -
+email: Don@mozz.com
+password: Dmozz123!
+
+busines user -
+email: Raykiki@chakra.com
+password: Rchakra123!
+
 user -
-email:Danny@user.com
-password:Dleeuser123!
+email: Danny@user.com
+password: Dleeuser123!
 
-
-busines user -
-email:Harry@tours.com
-password:Htours123!
-
-
-
-busines user -
-email:Don@mozz.com
-password:Dmozz123!
+user -
+email: hugo@sanchez.com
+password: Hsanchez123!
 

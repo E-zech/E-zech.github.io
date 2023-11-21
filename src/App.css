@@ -24,7 +24,7 @@ padding: 20px 0px;
 
 .grid-cards{
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
@@ -42,6 +42,12 @@ padding: 20px 0px;
 }
 
 
+@media screen and (max-width:1400px) {
+    .grid-cards{
+        grid-template-columns: repeat(3, auto);
+    }
+
+}
 @media screen and (max-width:1000px) {
     .grid-cards{
         grid-template-columns: repeat(2, auto);

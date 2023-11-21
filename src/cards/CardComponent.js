@@ -114,7 +114,7 @@ export default function CardComponent({ card, setAllCard }) {
 
           <CardActions disableSpacing>
   <IconButton>
-    <LocalPhoneIcon aria-label="phone" />
+    <LocalPhoneIcon aria-label="phone" onClick={()=> snackbar(`Phone Number : ${card.phone}`)}/>
   </IconButton>
   {user && (
     <IconButton id='favoriteBtn' aria-label="add to favorites" onClick={() => toggleFavOrNot(card.id, card.favorite)}>

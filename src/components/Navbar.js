@@ -48,7 +48,7 @@ export default function Navbar({ mode, toggleMode }) {
 
         useEffect(()=>{
             const disableSearchBar = ['/admin', '/about', '/login', '/signup', '/account'];
-            setIsSearchBar(!disableSearchBar.includes(path))
+            setIsSearchBar(!disableSearchBar.includes(path) )
         },[path]);
 
     const logout = () => {
@@ -110,8 +110,7 @@ return (
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                     open={Boolean(anchorElNav)}
                     onClose={handleCloseNavMenu}
-                    sx={{ display: { xs: 'block', md: 'none' }, }}
-                >
+                    sx={{ display: { xs: 'block', md: 'none' }, }}>
                     {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
                         <Link key={p.route} to={p.route} style={{ textDecoration: 'none', color: 'black' }}>
                             <MenuItem onClick={handleCloseNavMenu}>
@@ -135,7 +134,8 @@ return (
                     letterSpacing: '.3rem',
                     color: 'inherit',
                     textDecoration: 'none',}}>     
-                <HomeIcon/>
+                Home
+            
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
@@ -151,12 +151,10 @@ return (
                         </Button>
                     </Link>))} 
             </Box>
-
             { isSearchBar && 
             <Box sx={{ width: '20vw' }}>
                 <SearchBar  />
             </Box>}
-
             <Box sx={{}} >
                 <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
                     {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}
@@ -199,5 +197,5 @@ return (
         </Toolbar>
     </Container>
     </AppBar>
-    );
-}
+    );}
+

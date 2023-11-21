@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { GeneralContext } from '../App';
 import { useParams } from "react-router-dom"
+import LPNavbar from "./LPNavbar";
 import './LandingPage.css';
 import './LPNabvbar.css';
-import './LandingPageMediaQ.css';
 import './LPFooter.css';
-import LPNavbar from "./LPNavbar";
+import './LandingPageMediaQ.css';
 /* classes that start with LP means Landing Page*/
 
 
@@ -65,7 +65,7 @@ return (
 
     <a href="#up">
     <div className="LP-up-button">⬆️</div>
-</a>
+    </a>
    
 </section>
 </>        
