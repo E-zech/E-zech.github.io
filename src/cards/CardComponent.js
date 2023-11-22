@@ -75,7 +75,7 @@ export default function CardComponent({ card, setAllCard }) {
   return (
     <>
       <section className='container-cards' >
-        <Card sx={{ maxWidth: 345, backgroundColor:'red' , boxShadow: '0px 0px 6px 0.5px #b88138;', '&:hover':{boxShadow: '0px 0px 6px 1px #fba32d',}}}
+        <Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' , boxShadow: '0px 0px 6px 0.5px #b88138;', '&:hover':{boxShadow: '0px 0px 6px 1px #fba32d',}}}
           key={card.id}
           className='card' >
 
