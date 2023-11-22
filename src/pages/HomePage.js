@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CardComponent from "../cards/CardComponent";
 import { GeneralContext } from "../App";
-import './HomePage.css';
 import ResultNotFound from "../components/ResultNotFound.js";
 
 export default function HomePage() {
@@ -18,12 +17,16 @@ export default function HomePage() {
         setAllCard(data);
       }).finally(()=> setLoader(false))
   }, [filteredCards]);
+  
+
   return (
-    <><section>
+  <>
+    <section>
       <header className="header"> 
       <h1 className="main-title">Queenstown Activities</h1>
       <h3 className="sec-title">Explore Queenstown's Most Thrilling and Breathtaking Adventures !</h3>
       </header>
+
       <section className="container-cards">
                 {loader ? (
                     <h1>Loading...</h1>
@@ -39,7 +42,7 @@ export default function HomePage() {
                     </div>
                 )}
             </section>
-            </section>
+    </section>
     </>
   );
 }

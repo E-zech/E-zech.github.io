@@ -42,9 +42,11 @@ const handleChange  = (ev) => {
     const { name, value } = ev.target;
     const obj = { ...formData, [name]: value };
     setFormData(obj);
+
     const validate = schema.validate(obj, { abortEarly: false });
     const tempErrors = { ...errors };
     delete tempErrors[name];
+
     if (validate.error) {
       const item = validate.error.details.find((e) => e.context.key === name);
       if (item) {
@@ -54,11 +56,14 @@ const handleChange  = (ev) => {
     if (name in tempErrors && value === "") {
       delete tempErrors[name];
     }
-setErrors(tempErrors);
- const formIsValid = Object.keys(tempErrors).length === 0 &&
- Object.values(obj).every((value) => {
-  return value !== "";});
-  setIsFormValid(formIsValid);
+
+    setErrors(tempErrors);
+
+    const formIsValid = Object.keys(tempErrors).length === 0 &&
+    Object.values(obj).every((value) => {
+    return value !== "";});
+    setIsFormValid(formIsValid);
+
 };
 
 const handleSubmit = (ev) => {
@@ -66,6 +71,7 @@ const handleSubmit = (ev) => {
 
     const obj = {};
     const elements = ev.target.elements;
+    
     clientStructure.forEach((s) => {
       if (s.type === 'boolean') {
         obj[s.name] = elements[s.name].checked;

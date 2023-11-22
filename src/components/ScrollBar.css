@@ -1,26 +1,25 @@
 ::-webkit-scrollbar {
-    width: 20px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 208, 139, 0.89);
-    border-radius: 20px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 208, 139, 0.89);
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(221, 161, 71, 0.932);
-  }
-  ::-webkit-scrollbar-corner {
-    display: none;
-  }
-  
+  width: 20px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 208, 139, 0.89);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 208, 139, 0.89);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(221, 161, 71, 0.932);
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}

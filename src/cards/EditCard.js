@@ -60,16 +60,11 @@ export default function EditCards() {
         <header>
             <h1 className='main-title'>Edit Card</h1>
         </header>
+
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
+
+            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column',  alignItems: 'center', }}>       
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <Grid container spacing={2}>
                         {
@@ -89,7 +84,7 @@ export default function EditCards() {
                                             autoComplete={propertyName}
                                             value={formData[propertyName]}
                                             onChange={(ev) =>
-                                                setFormData({ ...formData, [propertyName]: ev.target.value })
+                                            setFormData({ ...formData, [propertyName]: ev.target.value })
                                             }
                                         />)
                                     }
@@ -97,19 +92,16 @@ export default function EditCards() {
                             ))
                         }
                     </Grid>
+
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2, marginBottom:"100px" ,
-                        backgroundColor: 'indigo',
-                        '&:hover':{
-                            backgroundColor:'#7e30b7' 
-                           }
-                    }}
-                    >
+                        sx={{ mt: 3, mb: 2, marginBottom:"100px" , backgroundColor: 'indigo','&:hover':{backgroundColor:'#7e30b7'}}}
+                        >   
                         Save Changes
                     </Button>
+
                 </Box>
             </Box>
         </Container>

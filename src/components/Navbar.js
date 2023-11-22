@@ -21,12 +21,12 @@ const pages = [
     { route: '/about', title: 'About' },
     { route: '/login', title: 'Login', permissions: [RoleTypes.none] },
     { route: '/signup', title: 'Signup', permissions: [RoleTypes.none] },
-    { route: '/favorite', title: 'Fav cards', permissions: [RoleTypes.user, RoleTypes.business, RoleTypes.admin] },
+    { route: '/favorite', title: 'Fav cards', permissions: [RoleTypes.user, RoleTypes.business, RoleTypes.admin]},
     { route: '/my-cards', title: 'My cards', permissions: [RoleTypes.business, RoleTypes.admin] },
     { route: '/admin', title: 'User management', permissions: [RoleTypes.admin] }];
 
 export default function Navbar({ mode, toggleMode }) {
-     const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [isSearchBar, setIsSearchBar] = useState(false);
     const { user, setUser, setLoader, userRoleType, setUserRoleType, snackbar } = useContext(GeneralContext);
@@ -45,11 +45,10 @@ export default function Navbar({ mode, toggleMode }) {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null)};
 
-
-        useEffect(()=>{
+    useEffect(()=>{
             const disableSearchBar = ['/admin', '/about', '/login', '/signup', '/account'];
             setIsSearchBar(!disableSearchBar.includes(path) )
-        },[path]);
+    },[path]);
 
     const logout = () => {
         setLoader(true);
@@ -68,134 +67,125 @@ export default function Navbar({ mode, toggleMode }) {
  
  if (/^\/landing-page\/\d+$/.test(path)) {
     return null;
-}
-     
+}   
 return (
-    <AppBar
-        position="static"
-        sx={{backgroundColor: mode === 'dark' ? 'black' : '#dda147'}}>
+<AppBar
+    position="static"
+    sx={{backgroundColor: mode === 'dark' ? 'black' : '#dda147'}}>
     <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                onClick={() => navigate('/')}
-                sx={{mr: 2,
-                    display: { xs: 'none', md: 'flex' },
-                    fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.3rem',
-                    color: 'color',
-                    textDecoration: 'none',
-                    cursor:"pointer",
-                    userSelect: 'none'}}>
-                <HomeIcon/>
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit">
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                    keepMounted
-                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{ display: { xs: 'block', md: 'none' }, }}>
-                    {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
-                        <Link key={p.route} to={p.route} style={{ textDecoration: 'none', color: 'black' }}>
-                            <MenuItem onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{p.title}</Typography>
-                            </MenuItem>
-                        </Link>
-                    ))}
-                </Menu>
-            </Box>
-            <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                    mr: 2,
-                    display: { xs: 'flex', md: 'none' },
-                    flexGrow: 1,
-                    fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.3rem',
-                    color: 'inherit',
-                    textDecoration: 'none',}}>     
-                Home
-            
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+        <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            onClick={() => navigate('/')}
+            sx={{mr: 2, display: { xs: 'none', md: 'flex' },fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.3rem', color: 'color', textDecoration: 'none', cursor:"pointer",userSelect: 'none'}}>
+            <HomeIcon/>
+        </Typography>
+        
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit">
+                <MenuIcon />
+            </IconButton>
+            <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                keepMounted
+                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{ display: { xs: 'block', md: 'none' }, }}
+                >
                 {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
-                    <Link key={p.route} to={p.route} style={{ textDecoration: 'none', color: 'white' }}>
-                        <Button
-                            onClick={handleCloseNavMenu}
-                            sx={{
-                                my: 2,
-                                color: 'white',
-                                display: 'block',
-                                backgroundColor: p.route === path ? '#ffffff3d' : {} }}>
-                            {p.title}
-                        </Button>
-                    </Link>))} 
-            </Box>
-            { isSearchBar && 
-            <Box sx={{ width: '20vw' }}>
-                <SearchBar  />
-            </Box>}
-            <Box sx={{}} >
-                <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
-                    {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}
-                </IconButton>
-                </Box>
-            {user ?
-                <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} src={user.imgUrl} alt="User Avatar"/>
-                        </IconButton>
-                    </Tooltip>
-                    <Menu
-                        sx={{ mt: '45px' }}
-                        id="menu-appbar"
-                        anchorEl={anchorElUser}
-                        anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right'}}
-                        keepMounted
-                        transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right'}}
-                        open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}>
-                        <Link to="/account" style={{ 
-                            textDecoration: 'none',
-                             color: mode === 'dark' ? 'white' : 'black'
-                            }}>
-                            <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">{user.fullName}</Typography>
-                            </MenuItem>
-                        </Link>
-                        <MenuItem onClick={logout}>
-                            <Typography textAlign="center">Logout</Typography>
-                        </MenuItem>
-                    </Menu>
-                </Box> : ''
-            }
+                <Link key={p.route} to={p.route} style={{ textDecoration: 'none',  color: mode === 'dark' ? 'white' : 'black' }}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{p.title}</Typography>
+                    </MenuItem>
+                </Link>
+                ))}
+            </Menu>
+        </Box>
+        <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit',textDecoration: 'none',
+            }}>   
+            Home
+        </Typography>
+
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.filter(p => !p.permissions || checkPermissions(p.permissions, userRoleType)).map(p => (
+            <Link key={p.route} to={p.route} style={{ textDecoration: 'none', color: 'white' }}>
+                <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                    my: 2,
+                    color: 'white',
+                    display: 'block',
+                    backgroundColor: p.route === path ? '#ffffff3d' : {} }}>
+                    {p.title}
+                </Button>
+            </Link>))} 
+        </Box>
+
+        { isSearchBar && 
+        <Box sx={{ width: '20vw' }}>
+            <SearchBar  />
+        </Box>}
+        
+        <Box sx={{}} >
+            <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
+            {mode === 'dark' ? <Brightness4Icon /> : <NightlightIcon />}
+            </IconButton>
+        </Box>
+
+        {user ?
+            <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} src={user.imgUrl} alt="User Avatar"/>
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'}}
+                    keepMounted
+                    transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'}}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}>
+
+                    <Link to="/account" style={{ 
+                        textDecoration: 'none',
+                        color: mode === 'dark' ? 'white' : 'black'
+                        }}>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{user.fullName}</Typography>
+                    </MenuItem>
+                    </Link>
+
+                    <MenuItem onClick={logout}>
+                        <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>
+
+                </Menu>
+            </Box> : ''}
         </Toolbar>
     </Container>
-    </AppBar>
-    );}
+</AppBar>
+);}
 

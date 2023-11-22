@@ -51,7 +51,7 @@ export default function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
   const [allCards, setAllCard] = useState([]);
 
-  const { filteredCards, setFilteredCards } = useContext(GeneralContext);
+  const { setFilteredCards } = useContext(GeneralContext);
 
 useEffect(() => {
   fetch(`https://api.shipap.co.il/cards?token=d29611be-3431-11ee-b3e9-14dda9d4a5f0`, {
@@ -77,17 +77,19 @@ useEffect(() => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon /> 
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              value={searchValue}
-              onChange={(ev) => handleChange(ev.target.value)}
-            />
-          </Search>
+
+      <Search>
+        <SearchIconWrapper>
+          <SearchIcon /> 
+        </SearchIconWrapper>
+
+        <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ 'aria-label': 'search' }}
+          value={searchValue}
+          onChange={(ev) => handleChange(ev.target.value)}/>
+      </Search>
+
     </Box>
   );
 }

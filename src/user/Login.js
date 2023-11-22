@@ -16,8 +16,8 @@ import Joi from 'joi';
 export default function Login() {
     const [formData, setFormData] = useState({
         email: '',
-        password: '',
-    });
+        password: '',});
+
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const navigate = useNavigate();
@@ -28,16 +28,11 @@ export default function Login() {
         .email({ tlds: false })
         .required()
         ,
-        password: Joi.string()
-                     .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
-                     .required()
-                     .messages({
+        password: Joi.string().pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_*]).{8,32}$/)
+         .required().messages({
                         "string.pattern.base": "Password must contain at least one uppercase letter, one lowercase letter, one special character, and be between 8 and 32 characters in length.",
-                        "any.required": "Password is required",
-                      }),
-    });
-    
-  
+                        "any.required": "Password is required",})
+    });                            
 
     const handelChange = ev => {
         const { name, value } = ev.target;
@@ -110,13 +105,14 @@ export default function Login() {
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
+                        alignItems: 'center', }}>
+
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
+
                     <Typography component="h1" variant="h5">Login</Typography>
+
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             error={Boolean(errors.email)}
@@ -130,8 +126,8 @@ export default function Login() {
                             autoComplete="email"
                             autoFocus
                             onChange={handelChange}
-                            value={formData.email}
-                        />
+                            value={formData.email}/>
+
                         <TextField
                             error={Boolean(errors.password)}
                             helperText={errors.password}
@@ -144,8 +140,8 @@ export default function Login() {
                             id="password"
                             autoComplete="current-password"
                             onChange={handelChange}
-                            value={formData.password}
-                        />
+                            value={formData.password}/>
+
                         <Button
                             type="submit"
                             fullWidth
@@ -154,10 +150,10 @@ export default function Login() {
                             sx={{ mt: 3, mb: 2 , backgroundColor: 'indigo',
                             '&:hover':{
                                 backgroundColor:'#7e30b7' 
-                               }}}
-                        >
+                            }}}>
                             Login
                         </Button>
+
                         <Grid container justifyContent="center">
                             <Grid item>
                                 <Link to="/signup">
@@ -165,6 +161,7 @@ export default function Login() {
                                 </Link>
                             </Grid>
                         </Grid>
+
                     </Box>
                 </Box>
             </Container>

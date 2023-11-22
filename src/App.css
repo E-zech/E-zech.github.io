@@ -6,21 +6,20 @@
 
 .main-title,
 .sec-title{
-text-align: center;
-font-family: ui-monospace;
-
+    text-align: center;
+    font-family: ui-monospace;
 }
 
 .main-title{
-color: #3f2f06;
-font-size: 3rem;
-padding: 40px 0px 7px 0px;
+    color: #3f2f06;
+    font-size: 3rem;
+    padding: 40px 0px 7px 0px;
 }
 
 .sec-title{
-color: darkgoldenrod;
-font-size: 1.6rem;
-padding: 20px 0px;
+    color: #b38a22;
+    font-size: 1.6rem;
+    padding: 20px 0px;
 }
 
 .grid-cards{
@@ -31,6 +30,19 @@ padding: 20px 0px;
     gap: 1.2rem;
 }
 
+.Loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  
 .hr{
     margin: 0 auto;
     width: 72vw;
@@ -39,7 +51,7 @@ padding: 20px 0px;
 }
 
 .footer{
-   padding-top: 100px;
+    padding-top: 100px;
 }
 
 
@@ -47,8 +59,8 @@ padding: 20px 0px;
     .grid-cards{
         grid-template-columns: repeat(3, auto);
     }
-
 }
+
 @media screen and (max-width:1000px) {
     .grid-cards{
         grid-template-columns: repeat(2, auto);
@@ -66,8 +78,7 @@ padding: 20px 0px;
 @media screen and (max-width:700px) {
     .grid-cards{
         grid-template-columns: repeat(1, auto);
-    }
-    
+    } 
 }
 
 @media screen and (max-width:500px) {

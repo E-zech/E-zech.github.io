@@ -16,7 +16,7 @@ import './CardComponent.css';
 
 
 export default function CardComponent({ card, setAllCard }) {
-  const { user, setLoader, userRoleType , snackbar, filteredCards, setFilteredCards} = useContext(GeneralContext);
+  const { user, setLoader, userRoleType , snackbar,} = useContext(GeneralContext);
   const navigate = useNavigate();
 
 
@@ -70,79 +70,63 @@ export default function CardComponent({ card, setAllCard }) {
     } else {
       setLoader(false);
     }
-   
   }
 
   return (
-
     <>
       <section className='container-cards' >
-        <Card sx={{
-           maxWidth: 345,
-            backgroundColor:'#f3ead985' ,
-            boxShadow: '0px 0px 6px 0.5px #b88138;',
-            '&:hover':{
-              boxShadow: '0px 0px 6px 1px #fba32d',
-            }
-          }}
+        <Card sx={{ maxWidth: 345, backgroundColor:'#f3ead985' , boxShadow: '0px 0px 6px 0.5px #b88138;', '&:hover':{boxShadow: '0px 0px 6px 1px #fba32d',}}}
           key={card.id}
           className='card' >
-          <CardMedia
-            sx={{transition:"all 0.5s ease-in-out",
-              "&:hover": {
-                cursor: "pointer",
-                transform:"scale(1.02)"
-              }
-            }}
+
+          <CardMedia sx={{transition:"all 0.5s ease-in-out","&:hover": {cursor: "pointer", transform:"scale(1.02)" }}}
             component="img"
             height="194"
             image={card.imgUrl}
             alt="Paella dish"
-            onClick={()=>navigate(`/landing-page/${card.id}`)}
-          />
-          <CardContent>  <div className="card-wrapper">
-        <h1 className="main-headline">
-          {card.title}
-        </h1>
-        <h3 className="sec-headline">
-          {card.subtitle}
-        </h3>
-        <span className="phone cardSpan">
-        <span className="bold-spn">Phone:</span> {card.phone}
-        </span>
-        <span className="adress cardSpan">
-            <span className="bold-spn">Adress:</span> {card.state}, {card.city}. <br/> {card.street}. {card.houseNumber}. {card.zip}.
-        </span>
-        <span className="card-number cardSpan">
-            <span className="bold-spn">Card Number:</span> {card.id}
-        </span>
-      </div>
+            onClick={()=>navigate(`/landing-page/${card.id}`)}/>
+          
+          <CardContent>
+            <div className="card-wrapper">
+              <h1 className="main-headline"> {card.title} </h1>
+              <h3 className="sec-headline"> {card.subtitle} </h3>
+              
+              <span className="phone cardSpan">
+                <span className="bold-spn">Phone:</span> {card.phone}
+              </span>
+
+              <span className="adress cardSpan">
+                  <span className="bold-spn">Adress:</span> {card.state}, {card.city}. <br/> {card.street}. {card.houseNumber}. {card.zip}.
+              </span>
+
+              <span className="card-number cardSpan">
+                  <span className="bold-spn">Card Number:</span> {card.id}
+              </span>
+            </div>
           </CardContent>
 
           <CardActions disableSpacing>
-  <IconButton>
-    <LocalPhoneIcon aria-label="phone" onClick={()=> snackbar(`Phone Number : ${card.phone}`)}/>
-  </IconButton>
-  {user && (
-    <IconButton id='favoriteBtn' aria-label="add to favorites" onClick={() => toggleFavOrNot(card.id, card.favorite)}>
-      <FavoriteIcon color={card.favorite ? "error" : ""} />
-    </IconButton>
-  )}
-  {((userRoleType === RoleTypes.business && card.clientId === user.id) || (userRoleType === RoleTypes.admin && card.clientId === 0)) && (
-    <IconButton aria-label="edit" onClick={() => navigate(`/edit-cards/${card.id}`)}>
-      <ModeEditIcon />
-    </IconButton>
-  )}
-  {((userRoleType === RoleTypes.business && card.clientId === user.id) || userRoleType === RoleTypes.admin) && (
-    <IconButton aria-label="delete" onClick={() => deleteCard(card.id, userRoleType)}>
-      <DeleteIcon />
-    </IconButton>
-  )}
-</CardActions>
+            <IconButton onClick={()=> snackbar(`Phone Number : ${card.phone}`)}>
+              <LocalPhoneIcon aria-label="phone" />
+            </IconButton>
 
+            {user && (
+              <IconButton id='favoriteBtn' aria-label="add to favorites" onClick={() => toggleFavOrNot(card.id, card.favorite)}>
+                <FavoriteIcon color={card.favorite ? "error" : ""} />
+              </IconButton>)}
+
+            {((userRoleType === RoleTypes.business && card.clientId === user.id) || (userRoleType === RoleTypes.admin && card.clientId === 0)) && (
+              <IconButton aria-label="edit" onClick={() => navigate(`/edit-cards/${card.id}`)}>
+                <ModeEditIcon />
+              </IconButton>)}
+           
+            {((userRoleType === RoleTypes.business && card.clientId === user.id) || userRoleType === RoleTypes.admin) && (
+              <IconButton aria-label="delete" onClick={() => deleteCard(card.id, userRoleType)}>
+                <DeleteIcon />
+              </IconButton>)}
+          </CardActions>
         </Card >
       </section>
-
     </>
   );
 }

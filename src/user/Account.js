@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { GeneralContext } from '../App';
 import Switch from '@mui/material/Switch';
 import { FormControlLabel } from '@mui/material';
@@ -15,26 +15,6 @@ import {  clientStructure } from '../components/FormValidation';
 export default function Account() {
     const navigate = useNavigate();
     const { user, setUser, setLoader, snackbar } = useContext(GeneralContext);
-
-
-useEffect(()=>{
-    fetch(`https://api.shipap.co.il/clients/login`, {
-        credentials: 'include',
-     })
-     .then(res => {
-         if (res.ok) {
-             return res.json();
-         } else {
-             return res.text().then(x => {
-                 throw new Error(x);
-             });
-         }
-     })
-     .then(data => {
-     })
-     .catch(err => {
-     });
-},[])
 
     const handleSubmit = ev => {
         ev.preventDefault();
@@ -122,9 +102,6 @@ useEffect(()=>{
                 </Box>
             </Container> : ''
         }
-        <br /> <br /> <br /> <br />
     </>
-          
-     
-    );
+);
 }

@@ -1,10 +1,10 @@
-/* class that start with LP mean Landing Page*/
 html {
     scroll-behavior: smooth;
 }
+
 .LP-body-container{
     background: rgb(255,244,214);
-background: linear-gradient(0deg, rgba(255,244,214,1) 99%, rgba(183,243,255,1) 100%);
+    background: linear-gradient(0deg, rgba(255,244,214,1) 99%, rgba(183,243,255,1) 100%);
 }
 
 .LP-hr {
@@ -22,22 +22,22 @@ background: linear-gradient(0deg, rgba(255,244,214,1) 99%, rgba(183,243,255,1) 1
 }
 
 .LP-main-title{
-padding-top: 67px;
-font-size: 3.8rem;
-margin-top: -42px;
+    padding-top: 67px;
+    font-size: 3.8rem;
+    margin-top: -42px;
 }
 
 .LP-sub-title{
-font-size:1.5rem;
-padding: 12px 10px;
+    font-size:1.5rem;
+    padding: 12px 10px;
 }
 
 .LP-description{
-padding: 15px;
-width: 70vw;
-margin: 0 auto;
-text-align: left;
-line-height: 1.7;
+    padding: 15px;
+    width: 70vw;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.7;
 }
 
 .LP-description-txt {
@@ -47,10 +47,10 @@ line-height: 1.7;
 }
 
 .LP-photos-container{
- width: 98.5vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 98.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .LP-photo{

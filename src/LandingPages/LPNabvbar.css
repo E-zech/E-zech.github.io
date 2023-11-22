@@ -10,23 +10,23 @@
 }
 
 .LP-navbar{
-width: 80vw;
-padding: 12px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 15px;
-border-radius:50px;
-position: relative;
-background-color: black;
-box-shadow: 0px 5px 38px #e2ffff;
+    width: 80vw;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-radius:50px;
+    position: relative;
+    background-color: black;
+    box-shadow: 0px 5px 38px #e2ffff;
 }
 
 .LP-navbar-BtnImg-wrapper{
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .LP-navbarImg{
@@ -47,16 +47,16 @@ gap: 15px;
 }
 
 .LP-navbarImg:hover{
-cursor: zoom-in;
-transform: scale(1.1);
-transition: all 0.1s ease-in-out;
+    cursor: zoom-in;
+    transform: scale(1.1);
+    transition: all 0.1s ease-in-out;
 }
 
 .LP-navbarBtn:hover{
-cursor: pointer;
-color: white;
-transform: scale(1.01);
-transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    color: white;
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
 }
 
 .LP-navbarOwner{
@@ -67,11 +67,3 @@ transition: all 0.1s ease-in-out;
     font-size:2rem;
     color: wheat;
 }
-
-/* element.style {
-    color: black;
-    font-size: 3.5rem;
-    box-shadow: 0px 2px 11px 4px;
-    background-color: antiquewhite;
-    border-radius: 22px;
-} */

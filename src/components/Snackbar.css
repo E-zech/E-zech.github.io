@@ -11,7 +11,7 @@
     left: 50%;
     bottom: 30px;
     font-size: 17px;
-    box-shadow: 0px 0px 5px 1px #ffdb73; /*box-shadow: h-offset v-offset blur spread color;*/
+    box-shadow: 0px 0px 5px 1px #ffdb73; 
 }
 
 #snackbar.show {

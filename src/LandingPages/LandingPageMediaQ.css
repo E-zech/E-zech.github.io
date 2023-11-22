@@ -8,19 +8,22 @@
     .LP-navbarOwner {
         font-size: 1.3rem;
     }
+
     .LP-footer-contactWrapeer{
         display: block;
         padding: 1px 70px;
         text-align: left;
     }
+
     .LP-footer{
         text-align: left;
         padding-bottom: 50px;
     }
+
     .LP-footer-headline,
     .LP-footer-secHeadLine
      {
-    margin-left: 70px;
+        margin-left: 70px;
       }
 }
 
@@ -28,18 +31,24 @@
     .LP-navbar{
         gap: 0px;
     }
-    .LP-main-title{font-size: 2.8rem;}
+
+    .LP-main-title{font-size: 2.8rem;
+    }
+
     .LP-navbarOwner {
         font-size: 1rem;
         padding-right: 0px;
     }
+
     .LP-navbar-BtnImg-wrapper {
         gap: 0px;
     }
+
     .LP-navbarImg {
         width: 50px;
         height: 50px;
     }
+
     .LP-navbarBtn {
         font-size: 15px;
         width: 110px;
@@ -48,7 +57,9 @@
 }
 
 @media screen and (max-width: 450px) {
-    .LP-main-title{font-size: 2rem;}
+    .LP-main-title{font-size: 2rem;
+    }
+
     .LP-navbar-BtnImg-wrapper {
         gap: 6px;
     }

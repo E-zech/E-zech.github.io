@@ -9,7 +9,7 @@ import "./UsersMenagment.css";
 export default function UsersMenagment() {
   const [allClients, setAllClients] = useState([]);
   const [refresh, setRefresh] = useState([]);
-  const {  setLoader , snackbar } = useContext(GeneralContext);
+  const { setLoader , snackbar } = useContext(GeneralContext);
 
   useEffect(() => {
     setLoader(true);
@@ -34,8 +34,9 @@ export default function UsersMenagment() {
     { field: 'phone', headerName: 'Phone', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1 },
     { field: 'business', headerName: 'Business', flex: 1,
+
     renderCell: (params) => (
-      <div>
+    <div>
       {params.row.business ? (
         <CheckBoxIcon
           onClick={(e) => {
@@ -53,18 +54,17 @@ export default function UsersMenagment() {
             e.stopPropagation(); 
             handleBusiness(params.row);
           }}
-          style={{ cursor: 'pointer', color: 'red' }}
-        />
+          style={{ cursor: 'pointer', color: 'red' }}/>
       )}
     </div>
     ),
     },
+
     { field: 'delete' , headerName: 'Delete', flex: 1,
       renderCell: (params) => (
         <DeleteIcon
           onClick={() => handleDelete(params.row.id)} // You need to implement handleDelete
-          style={{ cursor: 'pointer' }}
-        />
+          style={{ cursor: 'pointer' }}/>
       ),
     }
   ];
@@ -109,21 +109,21 @@ const handleBusiness = (client) => {
   return (
     <>
     <header>
-    <h1 className="main-title">User Table Management</h1>
-    <h3 className="sec-title">Here you can manage your clients, You can upgrade or delete them in the table below.</h3>
+      <h1 className="main-title">User Table Management</h1>
+      <h3 className="sec-title">Here you can manage your clients, You can upgrade or delete them in the table below.</h3>
     </header>
 
     <section style={{ height: 'auto', width: '80vw', padding: '15px', margin:'0 auto' }}>
       <DataGrid
         rows={allClients}
         columns={columns}
-        pageSize={5}
-      />
+        pageSize={5}/>
     </section>
+
     <h4 className="description-title">
-    If the CheckBox color is <span className="green">green</span>, then the user is business.
-    <br />
-     If it is <span className="red">red</span>, the user is not business.
+      If the CheckBox color is <span className="green">green</span>, then the user is business.
+      <br />
+      If it is <span className="red">red</span>, the user is not business.
     </h4>
     </>
   );
