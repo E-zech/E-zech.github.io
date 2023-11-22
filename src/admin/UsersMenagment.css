@@ -1,4 +1,12 @@
 
+.info-title{
+    text-align: center;
+    color: color;
+    font-size: 1rem;
+    padding: 10px 0px;
+}
+
+
 .description-title{
 text-align: center;
 font-size: 1rem;
