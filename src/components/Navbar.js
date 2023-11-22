@@ -119,7 +119,7 @@ return (
             href="/"
             sx={{mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit',textDecoration: 'none',
             }}>   
-            Home
+            <HomeIcon/>
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -138,7 +138,7 @@ return (
         </Box>
 
         { isSearchBar && 
-        <Box sx={{ width: '20vw' }}>
+        <Box sx={{ width: '40vw' }}>
             <SearchBar  />
         </Box>}
         
