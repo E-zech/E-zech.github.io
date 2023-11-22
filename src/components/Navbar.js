@@ -138,7 +138,7 @@ return (
         </Box>
 
         { isSearchBar && 
-        <Box sx={{ width: '40vw' }}>
+        <Box sx={{ width: '29vw' }}>
             <SearchBar  />
         </Box>}
         
