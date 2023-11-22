@@ -23,7 +23,7 @@ const pages = [
     { route: '/signup', title: 'Signup', permissions: [RoleTypes.none] },
     { route: '/favorite', title: 'Fav cards', permissions: [RoleTypes.user, RoleTypes.business, RoleTypes.admin]},
     { route: '/my-cards', title: 'My cards', permissions: [RoleTypes.business, RoleTypes.admin] },
-    { route: '/admin', title: 'User management', permissions: [RoleTypes.admin] }];
+    { route: '/admin', title: 'User management', permissions: [RoleTypes.admin]}];
 
 export default function Navbar({ mode, toggleMode }) {
     const [anchorElNav, setAnchorElNav] = useState(null);
