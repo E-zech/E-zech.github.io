@@ -8,16 +8,17 @@
 .sec-title{
 text-align: center;
 font-family: ui-monospace;
-color: black;
+
 }
 
 .main-title{
-    color: indigo;
+color: #3f2f06;
 font-size: 3rem;
 padding: 40px 0px 7px 0px;
 }
 
 .sec-title{
+color: darkgoldenrod;
 font-size: 1.6rem;
 padding: 20px 0px;
 }
