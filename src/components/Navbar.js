@@ -137,10 +137,11 @@ return (
             </Link>))} 
         </Box>
 
-        { isSearchBar && 
-        <Box sx={{ width: '29vw' }}>
-            <SearchBar  />
-        </Box>}
+        {isSearchBar && (
+      <Box sx={{ width: user ? '29vw' : '40vw' }}>
+        <SearchBar />
+      </Box>)}
+    
         
         <Box sx={{}} >
             <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
