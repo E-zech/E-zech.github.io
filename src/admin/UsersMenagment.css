@@ -26,7 +26,8 @@
     align-items: center;
     top: 20%;
     z-index: 999;
-    background-color: rgba(214, 210, 210, 0.753);
+    color: wheat;
+    background-color: rgb(0 0 0 / 84%);
     border-radius: 15px;
     padding: 0 20px;
 }
