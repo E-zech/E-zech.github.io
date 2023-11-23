@@ -5,12 +5,16 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import { GeneralContext } from '../App';
 import "./UsersMenagment.css";
+import "./PopUpBtn.css";
+import "./UmMediaQ.css";
 import { useMediaQuery } from "@mui/material";
 
 export default function UsersMenagment() {
   const [allClients, setAllClients] = useState([]);
   const [refresh, setRefresh] = useState([]);
   const { setLoader , snackbar } = useContext(GeneralContext);
+  const [isPopUp, setIsPopUp] = useState(true);
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     setLoader(true);
@@ -21,19 +25,14 @@ export default function UsersMenagment() {
         const filteredData = data.map((item) => {
           const { id, firstName, lastName, phone, email, business } = item;
           return { id, firstName, lastName, phone, email, business }; 
-          // taking from each obj only the necessary details for the table
         });
         setAllClients(filteredData); 
       }).finally(()=> setLoader(false))
     }, [refresh]);
     
-
-    const isSmallScreen = useMediaQuery('(max-width:500px)');
-
     const columns = [
       { field: 'id', headerName: 'ID', flex: 1 },
       { field: 'firstName', headerName: 'First Name', flex: 1 },
-      // Conditionally render these columns based on screen width
       !isSmallScreen && { field: 'lastName', headerName: 'Last Name', flex: 1 },
       !isSmallScreen && { field: 'phone', headerName: 'Phone', flex: 1 },
       !isSmallScreen && { field: 'email', headerName: 'Email', flex: 1 },
@@ -65,7 +64,7 @@ export default function UsersMenagment() {
       { field: 'delete', headerName: 'Delete', flex: 1,
         renderCell: (params) => (
           <DeleteIcon
-            onClick={() => handleDelete(params.row.id)} // You need to implement handleDelete
+            onClick={() => handleDelete(params.row.id)} 
             style={{ cursor: 'pointer' }}/>
         ),
       }
@@ -112,28 +111,39 @@ const handleBusiness = (client) => {
     <>
     <header>
       <h1 className="main-title">User Table Management</h1>
-      <h3 className="sec-title">Here you can manage your clients, <br/> You can upgrade or delete them in the table below.</h3>
-      
-      <h4 className="description-title">
-      If the CheckBox color is <span className="green">green</span> then the user is business.
-      <br/>
-      If it is <span className="red">red</span> the user is not business. 
-      
-      </h4>
+ </header>
 
-    </header>
+ {isPopUp && (
+  <section className="pop-up-wrapper">
+    <div className="pop-up">
+    <h3 className="pop-up-title">Here you can manage your clients</h3>
 
-    <section style={{ height: 'auto', width: '100%', padding: '15px', margin:'0 auto' }}>
+    <ul className="pop-up-list">
+      <li className="list-txt">
+        You can upgrade or delete them by clicking on the CheckBox
+      </li>
+      <li className="list-txt">
+        If the CheckBox color is <span className="green">green</span>, then the user is business.
+      </li>
+      <li className="list-txt">
+        If it is <span className="red">red</span>, the user is not business.
+      </li>
+      <li className="list-txt">
+        * In small size devices, some of the info will be hidden *
+      </li>
+    </ul>
+
+      <button className="btn-pop-up" onClick={()=> setIsPopUp(false)}>❌</button>
+    </div>
+  </section>
+ )}
+ 
+    <section style={{ height: 'auto', width: '100%', padding: '25px 15px', margin:'0 auto' }}>
       <DataGrid
         rows={allClients}
         columns={columns}
         pageSize={5}/>
     </section>
-    <h3 className="info-title">
-      Swipe ⬅️ or ➡️ for more info <br/> 
-      * In small size devices some of the info will be hidden *
-      </h3>
- 
     </>
   );
 }

@@ -1,0 +1,52 @@
+.btn-pop-up{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 7px;
+    transition: all 0.2s ease-in-out;
+    animation: popButton 0.5s 3;
+}
+
+.btn-pop-up:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
+@keyframes popButton {
+    0% {
+        transform: scale(1.02);
+    }
+    10% {
+        transform: scale(1.04);
+    }
+    20% {
+        transform: scale(1.06);
+    }
+    30% {
+        transform: scale(1.08);
+    }
+    40% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    70% {
+        transform: scale(1.06);
+    }
+    80% {
+        transform: scale(1.04);
+    }
+    90% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1.02);
+    }
+}

@@ -1,0 +1,66 @@
+@media screen and (max-width: 900px) {
+    .pop-up {
+        width: 67%;
+        height: 48%;
+    }
+    
+    .btn-pop-up{
+        right: 5px;
+        top: 5px;
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .pop-up {
+        width: 79%;
+        height: 42%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .pop-up {
+        width: 91%;
+        height: 40%;
+        gap: 0px;
+        justify-content: center;
+        padding: 25px 6px;
+    }
+
+    .pop-up-title{
+        font-size: 22px;
+        padding-top: 15px;
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .pop-up-list{
+        gap: 13px;
+        padding: 20px 36px;
+        font-size: 15px;
+    }
+
+    .btn-pop-up{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .pop-up-title{
+        font-size: 17px;
+        padding-top: 15px;
+        font-size: 19px;
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .pop-up-list{
+        gap: 15px;      
+        padding: 22px 24px;
+        font-size: 13px;
+    }
+
+    .btn-pop-up{
+        font-size: 1rem;
+    }
+}
