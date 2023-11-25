@@ -6,7 +6,7 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import { GeneralContext } from '../App';
 import "./UsersMenagment.css";
 import "./PopUpBtn.css";
-import "./UmMediaQ.css";
+import "./UsersMenagmentMQ.css";
 import { useMediaQuery } from "@mui/material";
 
 export default function UsersMenagment() {
@@ -116,22 +116,22 @@ const handleBusiness = (client) => {
  {isPopUp && (
   <section className="pop-up-wrapper">
     <div className="pop-up">
-    <h3 className="pop-up-title">Here you can manage your clients</h3>
+      <h3 className="pop-up-title">Here you can manage your clients</h3>
 
-    <ul className="pop-up-list">
-      <li className="list-txt">
-        You can upgrade or delete them by clicking on the CheckBox
-      </li>
-      <li className="list-txt">
-        If the CheckBox color is <span className="green">green</span>, then the user is business.
-      </li>
-      <li className="list-txt">
-        If it is <span className="red">red</span>, the user is not business.
-      </li>
-      <li className="list-txt">
-        * In small size devices, some of the info will be hidden *
-      </li>
-    </ul>
+      <ul className="pop-up-list">
+        <li className="list-txt">
+          You can upgrade or delete them by clicking on the CheckBox
+        </li>
+        <li className="list-txt">
+          If the CheckBox color is <span className="green">green</span>, then the user is business.
+        </li>
+        <li className="list-txt">
+          If it is <span className="red">red</span>, the user is not business.
+        </li>
+        <li className="list-txt">
+          * In small size devices, some of the info will be hidden *
+        </li>
+      </ul>
 
       <button className="btn-pop-up" onClick={()=> setIsPopUp(false)}>❌</button>
     </div>

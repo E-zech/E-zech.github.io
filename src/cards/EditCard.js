@@ -12,7 +12,7 @@ export default function EditCards() {
     const [formData, setFormData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    const { setLoader, snackbar, filteredCards, setFilteredCards,indigoButtonStyle } = useContext(GeneralContext);
+    const { setLoader, snackbar, filteredCards, setFilteredCards } = useContext(GeneralContext);
 
     useEffect(() => {
         setLoader(true);
