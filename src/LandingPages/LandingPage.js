@@ -10,7 +10,6 @@ import './LandingPageMediaQ.css';
 export default function LandingPage() {
     const [card, setCard] = useState({})
     const { id } = useParams();
-    const clientId = card.clientId;
     const { setLoader} = useContext(GeneralContext);
 
         useEffect(() => {

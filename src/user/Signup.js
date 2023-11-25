@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { GeneralContext } from '../App';
